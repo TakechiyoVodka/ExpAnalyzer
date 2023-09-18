@@ -294,6 +294,7 @@
             this.ButtonReference.TabIndex = 23;
             this.ButtonReference.Text = "参照";
             this.ButtonReference.UseVisualStyleBackColor = true;
+            this.ButtonReference.Click += new System.EventHandler(this.ButtonReference_Click);
             // 
             // TextBoxReadDataPath
             // 
