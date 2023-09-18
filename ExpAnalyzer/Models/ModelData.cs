@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ExpAnalyzer.Models
 {
-    internal class ModelData
+    internal class ClassModelData
     {
         /// <summary>
         /// 機種名
@@ -16,6 +16,6 @@ namespace ExpAnalyzer.Models
         /// <summary>
         /// 台データリスト
         /// </summary>
-        public List<UnitData> UnitDataList { get; set; }
+        public List<ClassUnitData> UnitDataList { get; set; }
     }
 }

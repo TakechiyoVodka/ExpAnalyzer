@@ -2,7 +2,7 @@
 
 namespace ExpAnalyzer.Models
 {
-    internal class HistoryData
+    internal class ClassHistoryData
     {
         /// <summary>
         /// 回転数
