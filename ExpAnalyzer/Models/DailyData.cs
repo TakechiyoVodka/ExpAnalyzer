@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ExpAnalyzer.Models
 {
-    internal class ClassDailyData
+    public class ClassDailyData
     {
         /// <summary>
         /// 日付情報
@@ -12,6 +12,6 @@ namespace ExpAnalyzer.Models
         /// <summary>
         /// 履歴データリスト
         /// </summary>
-        public List<ClassHistoryData> HistoryDataList { get; set; }
+        public List<ClassHistoryData> HistoryDataList = new List<ClassHistoryData>();
     }
 }

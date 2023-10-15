@@ -50,6 +50,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
+    <Compile Include="Controller\Inport\ReadExcel.cs" />
     <Compile Include="Models\Define.cs" />
     <Compile Include="Views\FormMain.cs">
       <SubType>Form</SubType>
@@ -78,6 +80,7 @@
     </EmbeddedResource>
     <None Include="DataSheets\ExpAnalyzer_仕様書.pptx" />
     <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29.xlsx" />
+    <None Include="DataSheets\パチンコデータサンプル\パチンコデータ_マルハン鹿児島新港店.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -95,7 +98,6 @@
     <Folder Include="Controller\Calculate\" />
     <Folder Include="Controller\Export\" />
     <Folder Include="Controller\GlaphMapping\" />
-    <Folder Include="Controller\Inport\" />
     <Folder Include="Servesers\" />
   </ItemGroup>
   <ItemGroup>

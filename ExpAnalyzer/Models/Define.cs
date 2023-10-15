@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExpAnalyzer.Models
 {
-    internal class ClassDefine
+    public class ClassDefine
     {
         public string InputWorkbookPath { get; set; }
     }

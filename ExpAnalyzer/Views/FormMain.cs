@@ -1,4 +1,5 @@
-﻿using ExpAnalyzer.Models;
+﻿using ExpAnalyzer.Controller.Inport;
+using ExpAnalyzer.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,11 @@ namespace ExpAnalyzer
         {
             InitializeComponent();
         }
+        #region 静的フィールド
+        public static ClassDefine Define;
+        public static ClassHallData HallData;
+        //public static List<ClassHallData> HallDataList;
+        #endregion
         /// <summary>
         /// 参照ボタンクリックイベント
         /// </summary>
@@ -38,10 +44,36 @@ namespace ExpAnalyzer
 
                 if (Ofd.ShowDialog() == DialogResult.OK)
                 {
-                    ClassDefine Define = new ClassDefine();
+                    Define = new ClassDefine();
 
                     Define.InputWorkbookPath = Ofd.FileName;
                     TextBoxReadDataPath.Text = Ofd.FileName;
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+        /// <summary>
+        /// Excelデータ読み込みボタンクリックイベント
+        /// </summary>
+        private void ButtonReadData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (System.IO.File.Exists(Define.InputWorkbookPath) == true)
+                {
+                    ClassReadExcel ReadExcel = new ClassReadExcel();
+
+                    //Excelからホールデータを読込み
+                    HallData = ReadExcel.ReadHallDataFromExcel(Define.InputWorkbookPath);
+                }
+                else
+                {
+                    throw new Exception("指定されたExcelデータファイルが存在しません。");
                 }
                 return;
             }

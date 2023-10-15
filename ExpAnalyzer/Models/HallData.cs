@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ExpAnalyzer.Models
 {
-    internal class ClassHallData
+    public class ClassHallData
     {
         /// <summary>
         /// ホール名
@@ -12,6 +12,6 @@ namespace ExpAnalyzer.Models
         /// <summary>
         /// 機種データリスト
         /// </summary>
-        public List<ClassModelData> ModelDataList { get; set; }
+        public List<ClassModelData> ModelDataList = new List<ClassModelData>();
     }
 }
