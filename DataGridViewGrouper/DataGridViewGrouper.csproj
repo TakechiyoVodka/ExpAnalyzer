@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4BC2F467-4FE0-4F5B-9607-0A510AA934F6}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>ExpAnalyzer</RootNamespace>
-    <AssemblyName>ExpAnalyzer</AssemblyName>
+    <ProjectGuid>{785A6FBB-2BA0-42BE-84C4-1703BCAD15D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataGridViewGrouper</RootNamespace>
+    <AssemblyName>DataGridViewGrouper</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,14 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataGridViewGrouper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DataGridViewGrouper\bin\Debug\DataGridViewGrouper.dll</HintPath>
-    </Reference>
-    <Reference Include="Properties.Resources.Designer.cs">
-      <HintPath>bin\Debug\DataGridViewGrouper\TempPE\Properties.Resources.Designer.cs.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,32 +45,42 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WinModuleLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\WinModuleLibrary.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
-    <Compile Include="Controller\Inport\DispHallData.cs" />
-    <Compile Include="Controller\Inport\ReadExcel.cs" />
-    <Compile Include="Models\Define.cs" />
-    <Compile Include="Views\FormMain.cs">
-      <SubType>Form</SubType>
+    <Compile Include="DataGridViewGrouper.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Views\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <Compile Include="DataGridViewGrouperContextMenuStrip.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\DailyData.cs" />
-    <Compile Include="Models\HallData.cs" />
-    <Compile Include="Models\HistoryData.cs" />
-    <Compile Include="Models\ModelData.cs" />
-    <Compile Include="Models\UnitData.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="DataGridViewGrouperControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataGridViewGrouperControl.designer.cs">
+      <DependentUpon>DataGridViewGrouperControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupingInfo.cs" />
+    <Compile Include="GroupingOptions.cs" />
+    <Compile Include="GroupingSource.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GroupList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SearchBox.designer.cs">
+      <DependentUpon>SearchBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Support.cs" />
+    <EmbeddedResource Include="DataGridViewGrouper.resx">
+      <DependentUpon>DataGridViewGrouper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewGrouperControl.resx">
+      <DependentUpon>DataGridViewGrouperControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,13 +89,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <EmbeddedResource Include="SearchBox.resx">
+      <DependentUpon>SearchBox.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataSheets\ExpAnalyzer_仕様書.pptx" />
-    <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29.xlsx" />
-    <None Include="DataSheets\パチンコデータサンプル\パチンコデータ_マルハン鹿児島新港店.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,19 +107,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\Calculate\" />
-    <Folder Include="Controller\Export\" />
-    <Folder Include="Controller\GlaphMapping\" />
-    <Folder Include="Servesers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="EPPlus">
-      <Version>6.2.8</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

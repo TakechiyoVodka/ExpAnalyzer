@@ -1,5 +1,6 @@
 ﻿using ExpAnalyzer.Controller.Inport;
 using ExpAnalyzer.Models;
+using Subro.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,27 @@ namespace ExpAnalyzer
         public static ClassHallData HallData;
         //public static List<ClassHallData> HallDataList;
         #endregion
+
+        /// <summary>
+        /// メインフォームロードイベント
+        /// </summary>
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                //コンボボックス設定
+                ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
+                ComboBoxModelName.Items.Clear();
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
         /// <summary>
         /// 参照ボタンクリックイベント
         /// </summary>
@@ -57,6 +79,7 @@ namespace ExpAnalyzer
                 return;
             }
         }
+
         /// <summary>
         /// Excelデータ読み込みボタンクリックイベント
         /// </summary>
@@ -67,9 +90,19 @@ namespace ExpAnalyzer
                 if (System.IO.File.Exists(Define.InputWorkbookPath) == true)
                 {
                     ClassReadExcel ReadExcel = new ClassReadExcel();
+                    ClassDispHallData DispHallData = new ClassDispHallData();
 
                     //Excelからホールデータを読込み
                     HallData = ReadExcel.ReadHallDataFromExcel(Define.InputWorkbookPath);
+
+                    //店舗名をテキストボックスへ表示
+                    TextBoxStoreName.Text = HallData.HallName;
+
+                    //機種データをコンボボックスへ表示
+                    DispHallData.DispModelDataInComboBox(ComboBoxModelName, HallData);
+
+                    //台データをDataGridViewへ表示
+                    DispHallData.DispUnitDataInDataGridView(DataGridViewUnitData, HallData, ComboBoxModelName.SelectedItem.ToString());
                 }
                 else
                 {

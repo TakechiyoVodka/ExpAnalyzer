@@ -28,12 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ButtonAnalysData = new System.Windows.Forms.Button();
             this.TextBoxProbVarHitPersisRate = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -42,13 +37,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.TextBoxFirstHitProb = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.RemainRotateCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalRotateCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonReadData = new System.Windows.Forms.Button();
-            this.TotalProbVarHitCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataGridViewUnitData = new System.Windows.Forms.DataGridView();
-            this.TotalFirstHitCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.ComboBoxModelName = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,6 +46,7 @@
             this.ButtonReference = new System.Windows.Forms.Button();
             this.TextBoxReadDataPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.DataGridViewUnitData = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUnitData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,32 +124,6 @@
             this.label5.TabIndex = 30;
             this.label5.Text = "台スペック";
             // 
-            // RemainRotateCount
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.RemainRotateCount.DefaultCellStyle = dataGridViewCellStyle7;
-            this.RemainRotateCount.HeaderText = "残り回転数";
-            this.RemainRotateCount.Name = "RemainRotateCount";
-            this.RemainRotateCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // TotalRotateCount
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.TotalRotateCount.DefaultCellStyle = dataGridViewCellStyle8;
-            this.TotalRotateCount.HeaderText = "総回転数";
-            this.TotalRotateCount.Name = "TotalRotateCount";
-            this.TotalRotateCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // ButtonReadData
             // 
             this.ButtonReadData.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -170,75 +134,6 @@
             this.ButtonReadData.Text = "Excelデータ読み込み";
             this.ButtonReadData.UseVisualStyleBackColor = true;
             this.ButtonReadData.Click += new System.EventHandler(this.ButtonReadData_Click);
-            // 
-            // TotalProbVarHitCount
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            this.TotalProbVarHitCount.DefaultCellStyle = dataGridViewCellStyle9;
-            this.TotalProbVarHitCount.HeaderText = "確変回数";
-            this.TotalProbVarHitCount.Name = "TotalProbVarHitCount";
-            this.TotalProbVarHitCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // UnitNumber
-            // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.UnitNumber.DefaultCellStyle = dataGridViewCellStyle10;
-            this.UnitNumber.HeaderText = "台番号";
-            this.UnitNumber.Name = "UnitNumber";
-            this.UnitNumber.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UnitNumber.Width = 80;
-            // 
-            // DataGridViewUnitData
-            // 
-            this.DataGridViewUnitData.AllowUserToAddRows = false;
-            this.DataGridViewUnitData.AllowUserToResizeColumns = false;
-            this.DataGridViewUnitData.AllowUserToResizeRows = false;
-            this.DataGridViewUnitData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewUnitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.DataGridViewUnitData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DataGridViewUnitData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UnitNumber,
-            this.TotalFirstHitCount,
-            this.TotalProbVarHitCount,
-            this.TotalRotateCount,
-            this.RemainRotateCount});
-            this.DataGridViewUnitData.Location = new System.Drawing.Point(12, 118);
-            this.DataGridViewUnitData.Name = "DataGridViewUnitData";
-            this.DataGridViewUnitData.RowHeadersVisible = false;
-            this.DataGridViewUnitData.RowTemplate.Height = 21;
-            this.DataGridViewUnitData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DataGridViewUnitData.Size = new System.Drawing.Size(484, 304);
-            this.DataGridViewUnitData.TabIndex = 29;
-            // 
-            // TotalFirstHitCount
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.TotalFirstHitCount.DefaultCellStyle = dataGridViewCellStyle12;
-            this.TotalFirstHitCount.HeaderText = "初当り回数";
-            this.TotalFirstHitCount.Name = "TotalFirstHitCount";
-            this.TotalFirstHitCount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // label4
             // 
@@ -314,6 +209,28 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "読み込みExcelデータファイル";
             // 
+            // DataGridViewUnitData
+            // 
+            this.DataGridViewUnitData.AllowUserToAddRows = false;
+            this.DataGridViewUnitData.AllowUserToResizeColumns = false;
+            this.DataGridViewUnitData.AllowUserToResizeRows = false;
+            this.DataGridViewUnitData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewUnitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridViewUnitData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataGridViewUnitData.Location = new System.Drawing.Point(12, 118);
+            this.DataGridViewUnitData.Name = "DataGridViewUnitData";
+            this.DataGridViewUnitData.RowHeadersVisible = false;
+            this.DataGridViewUnitData.RowTemplate.Height = 21;
+            this.DataGridViewUnitData.Size = new System.Drawing.Size(484, 312);
+            this.DataGridViewUnitData.TabIndex = 29;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -341,6 +258,7 @@
             this.MinimumSize = new System.Drawing.Size(524, 612);
             this.Name = "FormMain";
             this.Text = "ExpAnalyzer";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewUnitData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -357,13 +275,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TextBoxFirstHitProb;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RemainRotateCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalRotateCount;
         private System.Windows.Forms.Button ButtonReadData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalProbVarHitCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitNumber;
-        private System.Windows.Forms.DataGridView DataGridViewUnitData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalFirstHitCount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ComboBoxModelName;
         private System.Windows.Forms.Label label3;
@@ -372,6 +284,7 @@
         private System.Windows.Forms.Button ButtonReference;
         private System.Windows.Forms.TextBox TextBoxReadDataPath;
         private System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.DataGridView DataGridViewUnitData;
     }
 }
 
