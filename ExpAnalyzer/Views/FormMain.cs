@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace ExpAnalyzer
         public static ClassDefine Define;
         public static ClassHallData HallData;
         //public static List<ClassHallData> HallDataList;
+        public static Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = null;
         #endregion
 
         /// <summary>
@@ -35,7 +37,6 @@ namespace ExpAnalyzer
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
                 ComboBoxModelName.Items.Clear();
-
                 return;
             }
             catch (Exception ex)
@@ -69,7 +70,7 @@ namespace ExpAnalyzer
                     Define = new ClassDefine();
 
                     Define.InputWorkbookPath = Ofd.FileName;
-                    TextBoxReadDataPath.Text = Ofd.FileName;
+                    TextBoxReadExcelPath.Text = Ofd.FileName;
                 }
                 return;
             }
@@ -83,7 +84,7 @@ namespace ExpAnalyzer
         /// <summary>
         /// Excelデータ読み込みボタンクリックイベント
         /// </summary>
-        private void ButtonReadData_Click(object sender, EventArgs e)
+        private void ButtonReadExcel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -99,10 +100,21 @@ namespace ExpAnalyzer
                     TextBoxStoreName.Text = HallData.HallName;
 
                     //機種データをコンボボックスへ表示
-                    DispHallData.DispModelDataInComboBox(ComboBoxModelName, HallData);
+                    DispHallData.DisplayModelDataInComboBox(ComboBoxModelName, HallData);
 
                     //台データをDataGridViewへ表示
-                    DispHallData.DispUnitDataInDataGridView(DataGridViewUnitData, HallData, ComboBoxModelName.SelectedItem.ToString());
+                    DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
+                        this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
+
+                    if (DataGridViewUnitDataGrouper != null)
+                    {
+                        //Excelデータ読み込みボタン無効化
+                        ButtonReadExcel.Enabled = false;
+
+                        //DataGridView操作ボタン有効化
+                        ButtonOpenGroup.Enabled = true;
+                        ButtonCloseGroup.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -116,5 +128,128 @@ namespace ExpAnalyzer
                 return;
             }
         }
+
+        /// <summary>
+        /// テキストボックス(読み込みExcelデータファイル)テキスト変更イベント
+        /// </summary>
+        private void TextBoxReadExcelPath_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TextBoxReadExcelPath.Text != null && TextBoxReadExcelPath.Text != "")
+                {
+                    //Excelデータ読み込みボタン有効化
+                    ButtonReadExcel.Enabled = true;
+                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// コンボボックス選択アイテム変更イベント
+        /// </summary>
+        private void ComboBoxModelName_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                ClassDispHallData DispHallData = new ClassDispHallData();
+
+                //DataGridViewグループのリソースを解放
+                DataGridViewUnitDataGrouper.Dispose();
+
+                //台データをDataGridViewへ表示
+                DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
+                    this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        #region DataGridViewイベント
+        /// <summary>
+        /// DataGridViewグループ開くボタンクリックイベント
+        /// </summary>
+        private void ButtonOpenGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //表示中のグループを全て開く
+                DataGridViewUnitDataGrouper.ExpandAll();
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// DataGridViewグループ閉じるボタンクリックイベント
+        /// </summary>
+        private void ButtonCloseGroup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //表示中のグループを全て閉じる
+                DataGridViewUnitDataGrouper.CollapseAll();
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// DataGridView行追加イベント
+        /// </summary>
+        private void DataGridViewUnitData_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            try
+            {
+                ClassDispHallData DispHallData = new ClassDispHallData();
+
+                //DataGridViewの表示設定(更新)
+                DispHallData.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// DataGridViewソートイベント
+        /// </summary>
+        private void DataGridViewUnitData_Sorted(object sender, EventArgs e)
+        {
+            try
+            {
+                ClassDispHallData DispHallData = new ClassDispHallData();
+
+                //DataGridViewの表示設定(更新)
+                DispHallData.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 機種データをコンボボックスへ表示
         /// </summary>
-        public void DispModelDataInComboBox(ComboBox ComboBoxModelName, ClassHallData HallData)
+        public void DisplayModelDataInComboBox(ComboBox ComboBoxModelName, ClassHallData HallData)
         {
             //コンボボックス初期化
             ComboBoxModelName.Items.Clear();
@@ -45,10 +46,15 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 台データをDataGridViewへ表示
         /// </summary>
-        public void DispUnitDataInDataGridView(DataGridView DataGridViewUnitData, ClassHallData HallData, string SelectedModelName)
+        public Subro.Controls.DataGridViewGrouper DisplayUnitDataInDataGridView(
+            DataGridView DataGridViewUnitData,
+            Button ButtonOpenGroup,
+            Button ButtonCloseGroup,
+            ClassHallData HallData,
+            string SelectedModelName)
         {
             //DataGridViewへ表示する台データの計算
-            List<ClassDispUnitData> DispUnitDataList = CalcDispUnitData(HallData, SelectedModelName);
+            List<ClassDispUnitData> DispUnitDataList = CalcDisplayUnitData(HallData, SelectedModelName);
 
             //DataTable作成
             DataTable dt = new DataTable();
@@ -92,17 +98,24 @@ namespace ExpAnalyzer.Controller.Inport
 
             //各台データをグループ化
             Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = new Subro.Controls.DataGridViewGrouper(DataGridViewUnitData);
-            
+
             DataGridViewUnitDataGrouper.RemoveGrouping();
             DataGridViewUnitDataGrouper.SetGroupOn(DataGridViewUnitData.Columns[0]);
+            DataGridViewUnitDataGrouper.Options.StartCollapsed = false;
 
-            return;
+            //グループの表示設定
+            DataGridViewUnitDataGrouper.DisplayGroup += DataGridViewUnitDataGrouper_DisplayGroup;
+
+            //DataGridViewグループの表示設定
+            SetDataGridViewDisplaySetting(DataGridViewUnitData);
+
+            return DataGridViewUnitDataGrouper;
         }
 
         /// <summary>
         /// DataGridViewへ表示する台データの計算
         /// </summary>
-        private List<ClassDispUnitData> CalcDispUnitData(ClassHallData HallData, string SelectedModelName)
+        private List<ClassDispUnitData> CalcDisplayUnitData(ClassHallData HallData, string SelectedModelName)
         {
             List<ClassDispUnitData> DispUnitDataList = new List<ClassDispUnitData>();
 
@@ -181,6 +194,60 @@ namespace ExpAnalyzer.Controller.Inport
                 }
             }
             return DispUnitDataList;
+        }
+
+        /// <summary>
+        /// DataGridViewグループの表示設定
+        /// </summary>
+        private void DataGridViewUnitDataGrouper_DisplayGroup(object sender, Subro.Controls.GroupDisplayEventArgs e)
+        {
+            e.ForeColor = Color.White;
+            e.BackColor = Color.MidnightBlue;
+            e.Header = "";
+            e.Summary = "";
+            e.DisplayValue = e.DisplayValue.ToString();
+            return;
+        }
+
+        /// <summary>
+        /// DataGridViewの表示設定
+        /// </summary>
+        public void SetDataGridViewDisplaySetting(DataGridView Dgv)
+        {
+            //手動ソート可(日付)
+            Dgv.Columns[1].SortMode = DataGridViewColumnSortMode.Automatic;
+
+            //手動ソート不可
+            Dgv.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+            Dgv.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
+            Dgv.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
+            Dgv.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
+            Dgv.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
+            Dgv.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            //中央添え(台番号・日付)
+            Dgv.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Dgv.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            //右寄せ(初当り回数・確変回数・初当り+確変・総回転数・残り回転数)
+            Dgv.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Dgv.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Dgv.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Dgv.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            Dgv.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            //台番号は表示しない
+            Dgv.Columns[0].Visible = false;
+
+            for (int i = 0; i < Dgv.RowCount; i++)
+            {
+                if (Convert.ToString(Dgv.Rows[i].Cells[2].Value) == "-")
+                {
+                    //定休日または故障台はグレーアウト
+                    Dgv.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
+                }
+            }
+            return;
         }
     }
 }
