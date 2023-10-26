@@ -193,6 +193,7 @@ namespace ExpAnalyzer.Controller.Inport
                             HistoryData = new ClassHistoryData();
 
                             //回転数
+
                             if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column].Value), out rotateCount) != true)
                             {
                                 throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column), ")の回転数の取得に失敗しました。"));

@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
+    <Compile Include="Controller\GlaphMapping\DispDailyData.cs" />
     <Compile Include="Controller\Inport\DispHallData.cs" />
     <Compile Include="Controller\Inport\ReadExcel.cs" />
     <Compile Include="Models\Define.cs" />
@@ -87,6 +89,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSheets\ExpAnalyzer_仕様書.pptx" />
+    <None Include="DataSheets\ExpAnalyzer_機種スペック調査結果.xlsx" />
     <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29.xlsx" />
     <None Include="DataSheets\パチンコデータサンプル\パチンコデータ_マルハン鹿児島新港店.xlsx" />
     <None Include="Properties\Settings.settings">
@@ -105,7 +108,6 @@
   <ItemGroup>
     <Folder Include="Controller\Calculate\" />
     <Folder Include="Controller\Export\" />
-    <Folder Include="Controller\GlaphMapping\" />
     <Folder Include="Servesers\" />
   </ItemGroup>
   <ItemGroup>

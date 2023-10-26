@@ -1,4 +1,5 @@
-﻿using ExpAnalyzer.Controller.Inport;
+﻿using ExpAnalyzer.Controller.GlaphMapping;
+using ExpAnalyzer.Controller.Inport;
 using ExpAnalyzer.Models;
 using Subro.Controls;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ExpAnalyzer
 {
@@ -34,9 +36,14 @@ namespace ExpAnalyzer
         {
             try
             {
+                ClassDispDailyData DispDailyData = new ClassDispDailyData();
+
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
                 ComboBoxModelName.Items.Clear();
+
+                //デイリー履歴データをグラフへ表示(枠線のみ表示)
+                DispDailyData.DisplayDailyDataOnChart(ChartDailyData, null, null, null);
                 return;
             }
             catch (Exception ex)
@@ -92,6 +99,7 @@ namespace ExpAnalyzer
                 {
                     ClassReadExcel ReadExcel = new ClassReadExcel();
                     ClassDispHallData DispHallData = new ClassDispHallData();
+                    ClassDispDailyData DispDailyData = new ClassDispDailyData();
 
                     //Excelからホールデータを読込み
                     HallData = ReadExcel.ReadHallDataFromExcel(Define.InputWorkbookPath);
@@ -105,6 +113,30 @@ namespace ExpAnalyzer
                     //台データをDataGridViewへ表示
                     DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
                         this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
+
+                    //選択機種の先頭日の履歴データをグラフへ表示
+                    foreach (ClassModelData ModelData in HallData.ModelDataList)
+                    {
+                        if (ModelData.ModelName == ComboBoxModelName.SelectedItem.ToString())
+                        {
+                            string modelName = ModelData.ModelName;
+
+                            foreach(ClassUnitData UnitData in ModelData.UnitDataList)
+                            {
+                                string unitNum = UnitData.UnitNum;
+                                
+                                foreach (ClassDailyData DailyData in UnitData.DailyDataList)
+                                {
+                                    string date = DailyData.Date.ToString("yyyy/MM/dd");
+
+                                    //デイリー履歴データをグラフへ表示
+                                    DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
+                                    break;
+                                }
+                                break;
+                            }
+                        }
+                    }
 
                     if (DataGridViewUnitDataGrouper != null)
                     {
@@ -158,13 +190,38 @@ namespace ExpAnalyzer
             try
             {
                 ClassDispHallData DispHallData = new ClassDispHallData();
+                ClassDispDailyData DispDailyData = new ClassDispDailyData();
 
-                //DataGridViewグループのリソースを解放
+                //DataGridViewグループのリソース解放
                 DataGridViewUnitDataGrouper.Dispose();
 
                 //台データをDataGridViewへ表示
                 DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
                     this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
+
+                //選択機種の先頭日の履歴データをグラフへ表示
+                foreach (ClassModelData ModelData in HallData.ModelDataList)
+                {
+                    if (ModelData.ModelName == ComboBoxModelName.SelectedItem.ToString())
+                    {
+                        string modelName = ModelData.ModelName;
+
+                        foreach (ClassUnitData UnitData in ModelData.UnitDataList)
+                        {
+                            string unitNum = UnitData.UnitNum;
+
+                            foreach (ClassDailyData DailyData in UnitData.DailyDataList)
+                            {
+                                string date = DailyData.Date.ToString("yyyy/MM/dd");
+
+                                //デイリー履歴データをグラフへ表示
+                                DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                }
                 return;
             }
             catch (Exception ex)
@@ -242,6 +299,41 @@ namespace ExpAnalyzer
 
                 //DataGridViewの表示設定(更新)
                 DispHallData.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// DataGridViewセルクリックイベント
+        /// </summary>
+        private void DataGridViewUnitData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //クリックされたセルの値
+                string cellValue = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+
+                if (cellValue != "")
+                {
+                    ClassDispDailyData DispDailyData = new ClassDispDailyData();
+
+                    //機種名
+                    string modelName = ComboBoxModelName.SelectedItem.ToString();
+
+                    //台番号
+                    string unitNum = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[0].Value);
+
+                    //日付
+                    string date = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[1].Value);
+
+                    //デイリー履歴データをグラフへ表示
+                    DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
+                }
                 return;
             }
             catch (Exception ex)
