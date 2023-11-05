@@ -202,7 +202,7 @@ namespace ExpAnalyzer.Controller.Inport
         private void DataGridViewUnitDataGrouper_DisplayGroup(object sender, Subro.Controls.GroupDisplayEventArgs e)
         {
             e.ForeColor = Color.White;
-            e.BackColor = Color.MidnightBlue;
+            e.BackColor = Color.OliveDrab;
             e.Header = "";
             e.Summary = "";
             e.DisplayValue = e.DisplayValue.ToString();
@@ -214,6 +214,13 @@ namespace ExpAnalyzer.Controller.Inport
         /// </summary>
         public void SetDataGridViewDisplaySetting(DataGridView Dgv)
         {
+            //Visualスタイルを使用しない
+            Dgv.EnableHeadersVisualStyles = false;
+
+            //列ヘッダーの色設定
+            Dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            Dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(74, 84, 96);
+
             //手動ソート可(日付)
             Dgv.Columns[1].SortMode = DataGridViewColumnSortMode.Automatic;
 
@@ -244,7 +251,7 @@ namespace ExpAnalyzer.Controller.Inport
                 if (Convert.ToString(Dgv.Rows[i].Cells[2].Value) == "-")
                 {
                     //定休日または故障台はグレーアウト
-                    Dgv.Rows[i].DefaultCellStyle.BackColor = Color.Gray;
+                    Dgv.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
                 }
             }
             return;

@@ -32,16 +32,20 @@ namespace ExpAnalyzer.Controller.GlaphMapping
             ChartDailyData.Legends.Clear();
             ChartDailyData.ChartAreas.Clear();
             ChartDailyData.ChartAreas.Add("ChartDailyData");
-
+            ChartDailyData.ChartAreas[0].BackColor = Color.FromArgb(22, 29, 41);
+            
             //X軸
             ChartDailyData.ChartAreas[0].AxisX.Minimum = 0;
             ChartDailyData.ChartAreas[0].AxisX.Maximum = 15;
             ChartDailyData.ChartAreas[0].AxisX.Interval = 1;
             ChartDailyData.ChartAreas[0].AxisX.MajorGrid.Interval = 0;
             ChartDailyData.ChartAreas[0].AxisX.MinorGrid.IntervalOffset = 0.5;
+            ChartDailyData.ChartAreas[0].AxisX.LineColor = Color.White;
+            ChartDailyData.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.White;
             ChartDailyData.ChartAreas[0].AxisX.MinorTickMark.Enabled = false;
             ChartDailyData.ChartAreas[0].AxisX.MajorTickMark.Enabled = false;
             ChartDailyData.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Yu Gothic UI", 9, FontStyle.Regular);
+            ChartDailyData.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
 
             //Y軸
             ChartDailyData.ChartAreas[0].AxisY.MaximumAutoSize = 10;
@@ -50,7 +54,9 @@ namespace ExpAnalyzer.Controller.GlaphMapping
             ChartDailyData.ChartAreas[0].AxisY.Interval = 100;
             ChartDailyData.ChartAreas[0].AxisY.MajorGrid.Interval = 500;
             ChartDailyData.ChartAreas[0].AxisY.MinorGrid.Interval = 100;
-            ChartDailyData.ChartAreas[0].AxisY.MinorGrid.LineColor = Color.LightGray;
+            ChartDailyData.ChartAreas[0].AxisY.LineColor = Color.White;
+            ChartDailyData.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.White;
+            ChartDailyData.ChartAreas[0].AxisY.MinorGrid.LineColor = Color.DimGray;
             ChartDailyData.ChartAreas[0].AxisY.MajorGrid.Enabled = true;
             ChartDailyData.ChartAreas[0].AxisY.MinorGrid.Enabled = true;
             ChartDailyData.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;

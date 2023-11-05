@@ -483,7 +483,7 @@ namespace Subro.Controls
             }
         }
 
-        Pen linepen = Pens.SteelBlue;
+        Pen linepen = Pens.DimGray;
 
         bool DrawExpandCollapseLines
         {
@@ -543,7 +543,7 @@ namespace Subro.Controls
             using (var bgb = new SolidBrush(info.BackColor))
             {
                 //line under the group row
-                e.Graphics.DrawLine(Pens.SteelBlue, r.Left, r.Bottom, r.Right, r.Bottom);
+                e.Graphics.DrawLine(Pens.DimGray, r.Left, r.Bottom, r.Right, r.Bottom);
 
 
 
@@ -593,7 +593,7 @@ namespace Subro.Controls
                 var cer = GetCollapseBoxBounds(e.RowBounds.Y);
 
                 if (capturedcollapsebox.Y == e.RowIndex)
-                    e.Graphics.FillEllipse(Brushes.Yellow, cer);
+                    e.Graphics.FillEllipse(Brushes.Silver, cer);
                 e.Graphics.DrawEllipse(linepen, cer);
                 bool collapsed = grouprow.Collapsed;
                 int cx;

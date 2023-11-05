@@ -1,4 +1,5 @@
-﻿using ExpAnalyzer.Controller.GlaphMapping;
+﻿using ExpAnalyzer.Controller.Common;
+using ExpAnalyzer.Controller.GlaphMapping;
 using ExpAnalyzer.Controller.Inport;
 using ExpAnalyzer.Models;
 using Subro.Controls;
@@ -242,6 +243,10 @@ namespace ExpAnalyzer
             {
                 //表示中のグループを全て開く
                 DataGridViewUnitDataGrouper.ExpandAll();
+
+                //選択されているセルの行ごと色変更
+                DataGridViewSelectedCellCollection SelectedCell = DataGridViewUnitData.SelectedCells;
+                DataGridViewUnitData.Rows[SelectedCell[0].RowIndex].Selected = true;
                 return;
             }
             catch (Exception ex)
@@ -316,24 +321,30 @@ namespace ExpAnalyzer
         {
             try
             {
-                //クリックされたセルの値
-                string cellValue = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-
-                if (cellValue != "")
+                if (e.RowIndex != -1 && e.ColumnIndex != -1)
                 {
-                    ClassDispDailyData DispDailyData = new ClassDispDailyData();
+                    //クリックされたセルの値
+                    string cellValue = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
 
-                    //機種名
-                    string modelName = ComboBoxModelName.SelectedItem.ToString();
+                    if (cellValue != "")
+                    {
+                        ClassDispDailyData DispDailyData = new ClassDispDailyData();
 
-                    //台番号
-                    string unitNum = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[0].Value);
+                        //選択されているセルの行ごと色変更
+                        DataGridViewUnitData.Rows[e.RowIndex].Selected = true;
 
-                    //日付
-                    string date = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[1].Value);
+                        //機種名
+                        string modelName = ComboBoxModelName.SelectedItem.ToString();
 
-                    //デイリー履歴データをグラフへ表示
-                    DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
+                        //台番号
+                        string unitNum = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[0].Value);
+
+                        //日付
+                        string date = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[1].Value);
+
+                        //デイリー履歴データをグラフへ表示
+                        DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
+                    }
                 }
                 return;
             }
