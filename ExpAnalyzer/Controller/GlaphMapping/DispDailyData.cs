@@ -21,6 +21,7 @@ namespace ExpAnalyzer.Controller.GlaphMapping
             public int HitStatus;
             public int ProbVarHitCount;
         }
+
         /// <summary>
         /// デイリー履歴データをグラフへ表示
         /// </summary>
