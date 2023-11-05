@@ -117,28 +117,7 @@ namespace ExpAnalyzer
                         this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
 
                     //選択機種の先頭日の履歴データをグラフへ表示
-                    foreach (ClassModelData ModelData in HallData.ModelDataList)
-                    {
-                        if (ModelData.ModelName == ComboBoxModelName.SelectedItem.ToString())
-                        {
-                            string modelName = ModelData.ModelName;
-
-                            foreach(ClassUnitData UnitData in ModelData.UnitDataList)
-                            {
-                                string unitNum = UnitData.UnitNum;
-                                
-                                foreach (ClassDailyData DailyData in UnitData.DailyDataList)
-                                {
-                                    string date = DailyData.Date.ToString("yyyy/MM/dd");
-
-                                    //デイリー履歴データをグラフへ表示
-                                    DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
-                                    break;
-                                }
-                                break;
-                            }
-                        }
-                    }
+                    DataGridViewUnitData.Rows[1].Selected = true;
 
                     if (DataGridViewUnitDataGrouper != null)
                     {
@@ -192,7 +171,6 @@ namespace ExpAnalyzer
             try
             {
                 ClassDispHallData DispHallData = new ClassDispHallData();
-                ClassDispDailyData DispDailyData = new ClassDispDailyData();
 
                 //DataGridViewグループのリソース解放
                 DataGridViewUnitDataGrouper.Dispose();
@@ -202,28 +180,7 @@ namespace ExpAnalyzer
                     this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
 
                 //選択機種の先頭日の履歴データをグラフへ表示
-                foreach (ClassModelData ModelData in HallData.ModelDataList)
-                {
-                    if (ModelData.ModelName == ComboBoxModelName.SelectedItem.ToString())
-                    {
-                        string modelName = ModelData.ModelName;
-
-                        foreach (ClassUnitData UnitData in ModelData.UnitDataList)
-                        {
-                            string unitNum = UnitData.UnitNum;
-
-                            foreach (ClassDailyData DailyData in UnitData.DailyDataList)
-                            {
-                                string date = DailyData.Date.ToString("yyyy/MM/dd");
-
-                                //デイリー履歴データをグラフへ表示
-                                DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
-                                break;
-                            }
-                            break;
-                        }
-                    }
-                }
+                DataGridViewUnitData.Rows[1].Selected = true;
                 return;
             }
             catch (Exception ex)
@@ -315,32 +272,33 @@ namespace ExpAnalyzer
         }
 
         /// <summary>
-        /// DataGridViewセルクリックイベント
+        /// DataGridView選択セル変更イベント
         /// </summary>
-        private void DataGridViewUnitData_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewUnitData_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                if (e.RowIndex != -1 && e.ColumnIndex != -1)
+                if (DataGridViewUnitData.SelectedCells.Count > 0
+                    && DataGridViewUnitData.SelectedCells[0].RowIndex > 0
+                    && DataGridViewUnitData.SelectedCells[0].ColumnIndex != -1
+                    && DataGridViewUnitData.SelectedCells[0].Value != null)
                 {
-                    //クリックされたセルの値
-                    string cellValue = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+                    ClassDispDailyData DispDailyData = new ClassDispDailyData();
+                    int row = DataGridViewUnitData.SelectedCells[0].RowIndex;
 
-                    if (cellValue != "")
+                    if (DataGridViewUnitData.Rows[row].Cells[1].Value != null)
                     {
-                        ClassDispDailyData DispDailyData = new ClassDispDailyData();
-
                         //選択されているセルの行ごと色変更
-                        DataGridViewUnitData.Rows[e.RowIndex].Selected = true;
+                        DataGridViewUnitData.Rows[row].Selected = true;
 
                         //機種名
                         string modelName = ComboBoxModelName.SelectedItem.ToString();
 
                         //台番号
-                        string unitNum = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[0].Value);
+                        string unitNum = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[0].Value);
 
                         //日付
-                        string date = Convert.ToString(DataGridViewUnitData.Rows[e.RowIndex].Cells[1].Value);
+                        string date = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[1].Value);
 
                         //デイリー履歴データをグラフへ表示
                         DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);

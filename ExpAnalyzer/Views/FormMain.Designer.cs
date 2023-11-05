@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ButtonAnalysData = new System.Windows.Forms.Button();
             this.ButtonReadExcel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@
             this.ButtonOpenGroup = new System.Windows.Forms.Button();
             this.ButtonCloseGroup = new System.Windows.Forms.Button();
             this.ChartDailyData = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.ButtonSetting = new System.Windows.Forms.Button();
             this.groupBoxColor1 = new ExpAnalyzer.Views.GroupBoxColor();
             this.TextBoxProbVarHitProb = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -73,9 +75,9 @@
             this.ButtonAnalysData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonAnalysData.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ButtonAnalysData.ForeColor = System.Drawing.Color.White;
-            this.ButtonAnalysData.Location = new System.Drawing.Point(643, 637);
+            this.ButtonAnalysData.Location = new System.Drawing.Point(648, 598);
             this.ButtonAnalysData.Name = "ButtonAnalysData";
-            this.ButtonAnalysData.Size = new System.Drawing.Size(160, 46);
+            this.ButtonAnalysData.Size = new System.Drawing.Size(154, 46);
             this.ButtonAnalysData.TabIndex = 38;
             this.ButtonAnalysData.Text = "データ解析/レポート出力";
             this.ButtonAnalysData.UseVisualStyleBackColor = false;
@@ -88,9 +90,9 @@
             this.ButtonReadExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonReadExcel.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ButtonReadExcel.ForeColor = System.Drawing.Color.White;
-            this.ButtonReadExcel.Location = new System.Drawing.Point(643, 576);
+            this.ButtonReadExcel.Location = new System.Drawing.Point(648, 542);
             this.ButtonReadExcel.Name = "ButtonReadExcel";
-            this.ButtonReadExcel.Size = new System.Drawing.Size(160, 46);
+            this.ButtonReadExcel.Size = new System.Drawing.Size(154, 46);
             this.ButtonReadExcel.TabIndex = 37;
             this.ButtonReadExcel.Text = "Excelデータ読み込み";
             this.ButtonReadExcel.UseVisualStyleBackColor = false;
@@ -224,8 +226,8 @@
             this.DataGridViewUnitData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DataGridViewUnitData.Size = new System.Drawing.Size(619, 318);
             this.DataGridViewUnitData.TabIndex = 29;
-            this.DataGridViewUnitData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewUnitData_CellClick);
             this.DataGridViewUnitData.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DataGridViewUnitData_RowsAdded);
+            this.DataGridViewUnitData.SelectionChanged += new System.EventHandler(this.DataGridViewUnitData_SelectionChanged);
             this.DataGridViewUnitData.Sorted += new System.EventHandler(this.DataGridViewUnitData_Sorted);
             // 
             // ButtonOpenGroup
@@ -273,6 +275,18 @@
             this.ChartDailyData.Size = new System.Drawing.Size(632, 234);
             this.ChartDailyData.TabIndex = 49;
             this.ChartDailyData.Text = "ChartDailyData";
+            // 
+            // ButtonSetting
+            // 
+            this.ButtonSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.ButtonSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSetting.BackgroundImage")));
+            this.ButtonSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonSetting.Location = new System.Drawing.Point(742, 25);
+            this.ButtonSetting.Name = "ButtonSetting";
+            this.ButtonSetting.Size = new System.Drawing.Size(60, 30);
+            this.ButtonSetting.TabIndex = 52;
+            this.ButtonSetting.UseVisualStyleBackColor = false;
             // 
             // groupBoxColor1
             // 
@@ -466,7 +480,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(819, 696);
+            this.Controls.Add(this.ButtonSetting);
             this.Controls.Add(this.groupBoxColor1);
             this.Controls.Add(this.ChartDailyData);
             this.Controls.Add(this.ButtonCloseGroup);
@@ -527,6 +543,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TextBoxFirstHitProb;
+        private System.Windows.Forms.Button ButtonSetting;
     }
 }
 
