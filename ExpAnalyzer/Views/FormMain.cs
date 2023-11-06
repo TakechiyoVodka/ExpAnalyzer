@@ -28,6 +28,7 @@ namespace ExpAnalyzer
         public static ClassDefine Define;
         public static ClassHallData HallData;
         //public static List<ClassHallData> HallDataList;
+        List<ClassModelDetailsInfo> ModelDetailsInfoList;
         public static Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = null;
         #endregion
 
@@ -39,6 +40,11 @@ namespace ExpAnalyzer
             try
             {
                 ClassDispDailyData DispDailyData = new ClassDispDailyData();
+                ClassReadInitializeFile ReadInitFile = new ClassReadInitializeFile();
+                ClassDefine Define = new ClassDefine();
+
+                //インストーラー作成後、ModelDetailsInfo.iniはAppDataへ格納
+                Define.InputInitFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelDetailsInfo.ini";
 
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -46,6 +52,9 @@ namespace ExpAnalyzer
 
                 //デイリー履歴データをグラフへ表示(枠線のみ表示)
                 DispDailyData.DisplayDailyDataOnChart(ChartDailyData, null, null, null);
+
+                //設定ファイルから機種詳細情報を読込み
+                ModelDetailsInfoList = ReadInitFile.ReadModelDetailsInfo(Define.InputInitFilePath);
                 return;
             }
             catch (Exception ex)
@@ -78,7 +87,7 @@ namespace ExpAnalyzer
                 {
                     Define = new ClassDefine();
 
-                    Define.InputWorkbookPath = Ofd.FileName;
+                    Define.InputExcelFilePath = Ofd.FileName;
                     TextBoxReadExcelPath.Text = Ofd.FileName;
                 }
                 return;
@@ -97,14 +106,14 @@ namespace ExpAnalyzer
         {
             try
             {
-                if (System.IO.File.Exists(Define.InputWorkbookPath) == true)
+                if (System.IO.File.Exists(Define.InputExcelFilePath) == true)
                 {
                     ClassReadExcel ReadExcel = new ClassReadExcel();
                     ClassDispHallData DispHallData = new ClassDispHallData();
                     ClassDispDailyData DispDailyData = new ClassDispDailyData();
 
                     //Excelからホールデータを読込み
-                    HallData = ReadExcel.ReadHallDataFromExcel(Define.InputWorkbookPath);
+                    HallData = ReadExcel.ReadHallDataFromExcel(Define.InputExcelFilePath);
 
                     //店舗名をテキストボックスへ表示
                     TextBoxStoreName.Text = HallData.HallName;

@@ -62,6 +62,7 @@
     <Compile Include="Controller\GlaphMapping\DispDailyData.cs" />
     <Compile Include="Controller\Inport\DispHallData.cs" />
     <Compile Include="Controller\Inport\ReadExcel.cs" />
+    <Compile Include="Controller\Inport\ReadInitializeFile.cs" />
     <Compile Include="Models\Define.cs" />
     <Compile Include="Views\FormMain.cs">
       <SubType>Form</SubType>
