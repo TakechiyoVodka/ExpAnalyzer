@@ -111,6 +111,7 @@ namespace ExpAnalyzer
                     ClassReadExcel ReadExcel = new ClassReadExcel();
                     ClassDispHallData DispHallData = new ClassDispHallData();
                     ClassDispDailyData DispDailyData = new ClassDispDailyData();
+                    ClassDispModelDetailsInfo DispModelDetailsInfo = new ClassDispModelDetailsInfo();
 
                     //Excelからホールデータを読込み
                     HallData = ReadExcel.ReadHallDataFromExcel(Define.InputExcelFilePath);
@@ -120,6 +121,12 @@ namespace ExpAnalyzer
 
                     //機種データをコンボボックスへ表示
                     DispHallData.DisplayModelDataInComboBox(ComboBoxModelName, HallData);
+
+                    //テキストボックスへ機種スペック情報を表示
+                    DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
+                        this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
+                        this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
+                        ModelDetailsInfoList, ComboBoxModelName.SelectedItem.ToString());
 
                     //台データをDataGridViewへ表示
                     DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
@@ -180,9 +187,16 @@ namespace ExpAnalyzer
             try
             {
                 ClassDispHallData DispHallData = new ClassDispHallData();
+                ClassDispModelDetailsInfo DispModelDetailsInfo = new ClassDispModelDetailsInfo();
 
                 //DataGridViewグループのリソース解放
                 DataGridViewUnitDataGrouper.Dispose();
+
+                //テキストボックスへ機種スペック情報を表示
+                DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
+                    this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
+                    this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
+                    ModelDetailsInfoList, ComboBoxModelName.SelectedItem.ToString());
 
                 //台データをDataGridViewへ表示
                 DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(

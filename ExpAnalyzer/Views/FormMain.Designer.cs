@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ButtonAnalysData = new System.Windows.Forms.Button();
             this.ButtonReadExcel = new System.Windows.Forms.Button();
@@ -114,11 +114,12 @@
             this.ComboBoxModelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.ComboBoxModelName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ComboBoxModelName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ComboBoxModelName.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ComboBoxModelName.ForeColor = System.Drawing.Color.White;
             this.ComboBoxModelName.FormattingEnabled = true;
-            this.ComboBoxModelName.Location = new System.Drawing.Point(289, 71);
+            this.ComboBoxModelName.Location = new System.Drawing.Point(289, 73);
             this.ComboBoxModelName.Name = "ComboBoxModelName";
-            this.ComboBoxModelName.Size = new System.Drawing.Size(262, 20);
+            this.ComboBoxModelName.Size = new System.Drawing.Size(262, 23);
             this.ComboBoxModelName.TabIndex = 27;
             this.ComboBoxModelName.SelectionChangeCommitted += new System.EventHandler(this.ComboBoxModelName_SelectionChangeCommitted);
             // 
@@ -137,11 +138,12 @@
             // 
             this.TextBoxStoreName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxStoreName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TextBoxStoreName.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxStoreName.ForeColor = System.Drawing.Color.White;
-            this.TextBoxStoreName.Location = new System.Drawing.Point(12, 72);
+            this.TextBoxStoreName.Location = new System.Drawing.Point(12, 73);
             this.TextBoxStoreName.Name = "TextBoxStoreName";
             this.TextBoxStoreName.ReadOnly = true;
-            this.TextBoxStoreName.Size = new System.Drawing.Size(262, 19);
+            this.TextBoxStoreName.Size = new System.Drawing.Size(262, 23);
             this.TextBoxStoreName.TabIndex = 25;
             // 
             // label2
@@ -162,7 +164,7 @@
             this.ButtonReference.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonReference.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ButtonReference.ForeColor = System.Drawing.Color.White;
-            this.ButtonReference.Location = new System.Drawing.Point(557, 25);
+            this.ButtonReference.Location = new System.Drawing.Point(557, 28);
             this.ButtonReference.Name = "ButtonReference";
             this.ButtonReference.Size = new System.Drawing.Size(75, 23);
             this.ButtonReference.TabIndex = 23;
@@ -174,11 +176,12 @@
             // 
             this.TextBoxReadExcelPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxReadExcelPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TextBoxReadExcelPath.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxReadExcelPath.ForeColor = System.Drawing.Color.White;
             this.TextBoxReadExcelPath.Location = new System.Drawing.Point(12, 28);
             this.TextBoxReadExcelPath.Name = "TextBoxReadExcelPath";
             this.TextBoxReadExcelPath.ReadOnly = true;
-            this.TextBoxReadExcelPath.Size = new System.Drawing.Size(539, 19);
+            this.TextBoxReadExcelPath.Size = new System.Drawing.Size(539, 23);
             this.TextBoxReadExcelPath.TabIndex = 22;
             this.TextBoxReadExcelPath.TextChanged += new System.EventHandler(this.TextBoxReadExcelPath_TextChanged);
             // 
@@ -189,9 +192,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(12, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 15);
+            this.label1.Size = new System.Drawing.Size(96, 15);
             this.label1.TabIndex = 21;
-            this.label1.Text = "読み込みExcelデータファイル";
+            this.label1.Text = "Excelデータファイル";
             // 
             // DataGridViewUnitData
             // 
@@ -200,23 +203,23 @@
             this.DataGridViewUnitData.AllowUserToResizeRows = false;
             this.DataGridViewUnitData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
             this.DataGridViewUnitData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewUnitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewUnitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridViewUnitData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(60)))), ((int)(((byte)(83)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewUnitData.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(60)))), ((int)(((byte)(83)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewUnitData.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridViewUnitData.GridColor = System.Drawing.Color.DimGray;
             this.DataGridViewUnitData.Location = new System.Drawing.Point(12, 123);
             this.DataGridViewUnitData.Name = "DataGridViewUnitData";
@@ -265,13 +268,13 @@
             // ChartDailyData
             // 
             this.ChartDailyData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
-            chartArea3.Name = "ChartArea1";
-            this.ChartDailyData.ChartAreas.Add(chartArea3);
+            chartArea1.Name = "ChartArea1";
+            this.ChartDailyData.ChartAreas.Add(chartArea1);
             this.ChartDailyData.Location = new System.Drawing.Point(6, 458);
             this.ChartDailyData.Name = "ChartDailyData";
-            series3.ChartArea = "ChartArea1";
-            series3.Name = "Series1";
-            this.ChartDailyData.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.ChartDailyData.Series.Add(series1);
             this.ChartDailyData.Size = new System.Drawing.Size(632, 234);
             this.ChartDailyData.TabIndex = 49;
             this.ChartDailyData.Text = "ChartDailyData";
@@ -282,7 +285,7 @@
             this.ButtonSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ButtonSetting.BackgroundImage")));
             this.ButtonSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ButtonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ButtonSetting.Location = new System.Drawing.Point(742, 25);
+            this.ButtonSetting.Location = new System.Drawing.Point(742, 28);
             this.ButtonSetting.Name = "ButtonSetting";
             this.ButtonSetting.Size = new System.Drawing.Size(60, 30);
             this.ButtonSetting.TabIndex = 52;
@@ -309,7 +312,7 @@
             this.groupBoxColor1.ForeColor = System.Drawing.Color.White;
             this.groupBoxColor1.Location = new System.Drawing.Point(638, 105);
             this.groupBoxColor1.Name = "groupBoxColor1";
-            this.groupBoxColor1.Size = new System.Drawing.Size(174, 340);
+            this.groupBoxColor1.Size = new System.Drawing.Size(174, 350);
             this.groupBoxColor1.TabIndex = 51;
             this.groupBoxColor1.TabStop = false;
             this.groupBoxColor1.Text = "機種スペック";
@@ -318,12 +321,12 @@
             // 
             this.TextBoxProbVarHitProb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxProbVarHitProb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxProbVarHitProb.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxProbVarHitProb.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxProbVarHitProb.ForeColor = System.Drawing.Color.White;
-            this.TextBoxProbVarHitProb.Location = new System.Drawing.Point(10, 87);
+            this.TextBoxProbVarHitProb.Location = new System.Drawing.Point(10, 91);
             this.TextBoxProbVarHitProb.Name = "TextBoxProbVarHitProb";
             this.TextBoxProbVarHitProb.ReadOnly = true;
-            this.TextBoxProbVarHitProb.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxProbVarHitProb.Size = new System.Drawing.Size(154, 23);
             this.TextBoxProbVarHitProb.TabIndex = 76;
             this.TextBoxProbVarHitProb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -331,7 +334,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label12.Location = new System.Drawing.Point(10, 69);
+            this.label12.Location = new System.Drawing.Point(10, 73);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(75, 15);
             this.label12.TabIndex = 75;
@@ -341,12 +344,12 @@
             // 
             this.TextBoxCTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxCTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxCTime.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxCTime.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxCTime.ForeColor = System.Drawing.Color.White;
-            this.TextBoxCTime.Location = new System.Drawing.Point(10, 308);
+            this.TextBoxCTime.Location = new System.Drawing.Point(10, 311);
             this.TextBoxCTime.Name = "TextBoxCTime";
             this.TextBoxCTime.ReadOnly = true;
-            this.TextBoxCTime.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxCTime.Size = new System.Drawing.Size(154, 23);
             this.TextBoxCTime.TabIndex = 74;
             this.TextBoxCTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -354,7 +357,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label11.Location = new System.Drawing.Point(10, 290);
+            this.label11.Location = new System.Drawing.Point(10, 293);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(21, 15);
             this.label11.TabIndex = 73;
@@ -364,12 +367,12 @@
             // 
             this.TextBoxSavingTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxSavingTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxSavingTime.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxSavingTime.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxSavingTime.ForeColor = System.Drawing.Color.White;
-            this.TextBoxSavingTime.Location = new System.Drawing.Point(10, 268);
+            this.TextBoxSavingTime.Location = new System.Drawing.Point(10, 267);
             this.TextBoxSavingTime.Name = "TextBoxSavingTime";
             this.TextBoxSavingTime.ReadOnly = true;
-            this.TextBoxSavingTime.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxSavingTime.Size = new System.Drawing.Size(154, 23);
             this.TextBoxSavingTime.TabIndex = 72;
             this.TextBoxSavingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -377,7 +380,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label10.Location = new System.Drawing.Point(10, 250);
+            this.label10.Location = new System.Drawing.Point(10, 249);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 15);
             this.label10.TabIndex = 71;
@@ -387,12 +390,12 @@
             // 
             this.TextBoxSpecialTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxSpecialTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxSpecialTime.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxSpecialTime.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxSpecialTime.ForeColor = System.Drawing.Color.White;
-            this.TextBoxSpecialTime.Location = new System.Drawing.Point(10, 228);
+            this.TextBoxSpecialTime.Location = new System.Drawing.Point(10, 223);
             this.TextBoxSpecialTime.Name = "TextBoxSpecialTime";
             this.TextBoxSpecialTime.ReadOnly = true;
-            this.TextBoxSpecialTime.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxSpecialTime.Size = new System.Drawing.Size(154, 23);
             this.TextBoxSpecialTime.TabIndex = 70;
             this.TextBoxSpecialTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -400,7 +403,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label9.Location = new System.Drawing.Point(10, 210);
+            this.label9.Location = new System.Drawing.Point(10, 205);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(21, 15);
             this.label9.TabIndex = 69;
@@ -410,12 +413,12 @@
             // 
             this.TextBoxProbVarHitPersisRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxProbVarHitPersisRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxProbVarHitPersisRate.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxProbVarHitPersisRate.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxProbVarHitPersisRate.ForeColor = System.Drawing.Color.White;
-            this.TextBoxProbVarHitPersisRate.Location = new System.Drawing.Point(10, 167);
+            this.TextBoxProbVarHitPersisRate.Location = new System.Drawing.Point(10, 179);
             this.TextBoxProbVarHitPersisRate.Name = "TextBoxProbVarHitPersisRate";
             this.TextBoxProbVarHitPersisRate.ReadOnly = true;
-            this.TextBoxProbVarHitPersisRate.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxProbVarHitPersisRate.Size = new System.Drawing.Size(154, 23);
             this.TextBoxProbVarHitPersisRate.TabIndex = 68;
             this.TextBoxProbVarHitPersisRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -423,7 +426,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(10, 149);
+            this.label8.Location = new System.Drawing.Point(10, 161);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(67, 15);
             this.label8.TabIndex = 67;
@@ -433,12 +436,12 @@
             // 
             this.TextBoxProbVarHitRashRate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxProbVarHitRashRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxProbVarHitRashRate.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxProbVarHitRashRate.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxProbVarHitRashRate.ForeColor = System.Drawing.Color.White;
-            this.TextBoxProbVarHitRashRate.Location = new System.Drawing.Point(10, 127);
+            this.TextBoxProbVarHitRashRate.Location = new System.Drawing.Point(10, 135);
             this.TextBoxProbVarHitRashRate.Name = "TextBoxProbVarHitRashRate";
             this.TextBoxProbVarHitRashRate.ReadOnly = true;
-            this.TextBoxProbVarHitRashRate.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxProbVarHitRashRate.Size = new System.Drawing.Size(154, 23);
             this.TextBoxProbVarHitRashRate.TabIndex = 66;
             this.TextBoxProbVarHitRashRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -446,7 +449,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(10, 109);
+            this.label7.Location = new System.Drawing.Point(10, 117);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 65;
@@ -466,12 +469,12 @@
             // 
             this.TextBoxFirstHitProb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.TextBoxFirstHitProb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxFirstHitProb.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxFirstHitProb.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.TextBoxFirstHitProb.ForeColor = System.Drawing.Color.White;
             this.TextBoxFirstHitProb.Location = new System.Drawing.Point(10, 46);
             this.TextBoxFirstHitProb.Name = "TextBoxFirstHitProb";
             this.TextBoxFirstHitProb.ReadOnly = true;
-            this.TextBoxFirstHitProb.Size = new System.Drawing.Size(154, 19);
+            this.TextBoxFirstHitProb.Size = new System.Drawing.Size(154, 23);
             this.TextBoxFirstHitProb.TabIndex = 63;
             this.TextBoxFirstHitProb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 

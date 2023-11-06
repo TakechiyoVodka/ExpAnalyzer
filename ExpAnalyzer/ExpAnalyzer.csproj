@@ -61,6 +61,7 @@
     <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
     <Compile Include="Controller\GlaphMapping\DispDailyData.cs" />
     <Compile Include="Controller\Inport\DispHallData.cs" />
+    <Compile Include="Controller\Inport\DispModelDetailsInfo.cs" />
     <Compile Include="Controller\Inport\ReadExcel.cs" />
     <Compile Include="Controller\Inport\ReadInitializeFile.cs" />
     <Compile Include="Models\Define.cs" />
