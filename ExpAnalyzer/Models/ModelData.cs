@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ExpAnalyzer.Models
 {
+    /// <summary>
+    /// 機種データクラス
+    /// </summary>
     public class ClassModelData
     {
         /// <summary>
@@ -19,6 +22,9 @@ namespace ExpAnalyzer.Models
         public List<ClassUnitData> UnitDataList = new List<ClassUnitData>();
     }
 
+    /// <summary>
+    /// 機種スペックデータクラス
+    /// </summary>
     public class ClassModelDetailsInfo
     {
         /// <summary>

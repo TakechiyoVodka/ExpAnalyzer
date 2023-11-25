@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace ExpAnalyzer.Controller.Inport
 {
+    /// <summary>
+    /// 初期設定ファイル読込みクラス
+    /// </summary>
     internal class ClassReadInitializeFile
     {
         /// <summary>

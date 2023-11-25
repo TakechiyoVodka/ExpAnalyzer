@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace ExpAnalyzer.Controller.Inport
 {
+    /// <summary>
+    /// 表示用機種スペックデータクラス
+    /// </summary>
     internal class ClassDispModelDetailsInfo
     {
         /// <summary>

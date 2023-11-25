@@ -10,6 +10,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ExpAnalyzer.Controller.GlaphMapping
 {
+    /// <summary>
+    /// 表示用デイリーデータクラス
+    /// </summary>
     internal class ClassDispDailyData
     {
         /// <summary>

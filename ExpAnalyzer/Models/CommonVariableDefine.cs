@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ExpAnalyzer.Models
 {
-    public class ClassDefine
+    /// <summary>
+    /// 共通変数クラス
+    /// </summary>
+    public class ClassCommonVariableDefine
     {
         /// <summary>
         /// 入力機種情報ファイルパス

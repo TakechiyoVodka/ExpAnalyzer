@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace ExpAnalyzer.Controller.Inport
 {
+    /// <summary>
+    /// 表示用ホールデータクラス
+    /// </summary>
     internal class ClassDispHallData
     {
         /// <summary>

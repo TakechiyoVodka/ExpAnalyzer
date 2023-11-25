@@ -25,10 +25,13 @@ namespace ExpAnalyzer
             InitializeComponent();
         }
         #region 静的フィールド
-        public static ClassDefine Define;
+        //共通変数
+        public static ClassCommonVariableDefine CommonVariableDefine;
+        //ホールデータ
         public static ClassHallData HallData;
-        //public static List<ClassHallData> HallDataList;
-        List<ClassModelDetailsInfo> ModelDetailsInfoList;
+        //機種スペックデータ
+        public static List<ClassModelDetailsInfo> ModelDetailsInfoList;
+        //DataGridViewGrouper(台データ)
         public static Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = null;
         #endregion
 
@@ -41,10 +44,10 @@ namespace ExpAnalyzer
             {
                 ClassDispDailyData DispDailyData = new ClassDispDailyData();
                 ClassReadInitializeFile ReadInitFile = new ClassReadInitializeFile();
-                ClassDefine Define = new ClassDefine();
+                ClassCommonVariableDefine CommonVariableDefine = new ClassCommonVariableDefine();
 
                 //インストーラー作成後、ModelDetailsInfo.iniはAppDataへ格納
-                Define.InputInitFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelDetailsInfo.ini";
+                CommonVariableDefine.InputInitFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelDetailsInfo.ini";
 
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -54,7 +57,7 @@ namespace ExpAnalyzer
                 DispDailyData.DisplayDailyDataOnChart(ChartDailyData, null, null, null);
 
                 //設定ファイルから機種詳細情報を読込み
-                ModelDetailsInfoList = ReadInitFile.ReadModelDetailsInfo(Define.InputInitFilePath);
+                ModelDetailsInfoList = ReadInitFile.ReadModelDetailsInfo(CommonVariableDefine.InputInitFilePath);
                 return;
             }
             catch (Exception ex)
@@ -85,9 +88,9 @@ namespace ExpAnalyzer
 
                 if (Ofd.ShowDialog() == DialogResult.OK)
                 {
-                    Define = new ClassDefine();
+                    CommonVariableDefine = new ClassCommonVariableDefine();
 
-                    Define.InputExcelFilePath = Ofd.FileName;
+                    CommonVariableDefine.InputExcelFilePath = Ofd.FileName;
                     TextBoxReadExcelPath.Text = Ofd.FileName;
                 }
                 return;
@@ -106,7 +109,7 @@ namespace ExpAnalyzer
         {
             try
             {
-                if (System.IO.File.Exists(Define.InputExcelFilePath) == true)
+                if (System.IO.File.Exists(CommonVariableDefine.InputExcelFilePath) == true)
                 {
                     ClassReadExcel ReadExcel = new ClassReadExcel();
                     ClassDispHallData DispHallData = new ClassDispHallData();
@@ -114,7 +117,7 @@ namespace ExpAnalyzer
                     ClassDispModelDetailsInfo DispModelDetailsInfo = new ClassDispModelDetailsInfo();
 
                     //Excelからホールデータを読込み
-                    HallData = ReadExcel.ReadHallDataFromExcel(Define.InputExcelFilePath);
+                    HallData = ReadExcel.ReadHallDataFromExcel(CommonVariableDefine.InputExcelFilePath);
 
                     //店舗名をテキストボックスへ表示
                     TextBoxStoreName.Text = HallData.HallName;
@@ -296,7 +299,8 @@ namespace ExpAnalyzer
 
         /// <summary>
         /// DataGridView選択セル変更イベント
-        /// </summary>
+        /// </summary
+        /// 
         private void DataGridViewUnitData_SelectionChanged(object sender, EventArgs e)
         {
             try

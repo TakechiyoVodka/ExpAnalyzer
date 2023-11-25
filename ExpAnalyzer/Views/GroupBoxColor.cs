@@ -15,6 +15,9 @@ namespace ExpAnalyzer.Views
         // 枠色（デフォルト：白）
         private Color borderColor = Color.White;
 
+        /// <summary>
+        /// グループボックス (枠線色変更可)
+        /// </summary>
         public GroupBoxColor()
         {
             // ダブルバッファリングを有効

@@ -16,6 +16,9 @@ using System.Net.NetworkInformation;
 
 namespace ExpAnalyzer.Controller.Inport
 {
+    /// <summary>
+    /// 読込みExcelデータクラス
+    /// </summary>
     internal class ClassReadExcel
     {
         /// <summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ExpAnalyzer.Controller.Common
 {
+    /// <summary>
+    /// Excel共通関数クラス
+    /// </summary>
     internal class ClassExcelCommonFunction
     {
         /// <summary>

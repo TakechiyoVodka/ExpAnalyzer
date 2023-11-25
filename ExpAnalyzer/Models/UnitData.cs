@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ExpAnalyzer.Models
 {
+    /// <summary>
+    /// 台データクラス
+    /// </summary>
     public class ClassUnitData
     {
         /// <summary>

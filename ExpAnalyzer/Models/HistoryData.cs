@@ -2,6 +2,9 @@
 
 namespace ExpAnalyzer.Models
 {
+    /// <summary>
+    /// 履歴データクラス
+    /// </summary>
     public class ClassHistoryData
     {
         /// <summary>

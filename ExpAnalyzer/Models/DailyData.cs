@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ExpAnalyzer.Models
 {
+    /// <summary>
+    /// デイリーデータクラス
+    /// </summary>
     public class ClassDailyData
     {
         /// <summary>
