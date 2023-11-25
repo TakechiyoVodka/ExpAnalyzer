@@ -6,15 +6,15 @@ namespace ExpAnalyzer.Models
     /// <summary>
     /// デイリーデータクラス
     /// </summary>
-    public class ClassDailyData
+    internal class ClassDailyData
     {
         /// <summary>
-        /// 日付情報
+        /// 日付
         /// </summary>
-        public DateTime Date { get; set; }
+        internal DateTime DateTime { get; set; }
         /// <summary>
         /// 履歴データリスト
         /// </summary>
-        public List<ClassHistoryData> HistoryDataList = new List<ClassHistoryData>();
+        internal List<ClassHistoryData> HistoryDataList = new List<ClassHistoryData>();
     }
 }

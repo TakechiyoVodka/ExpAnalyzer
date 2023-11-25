@@ -26,13 +26,13 @@ namespace ExpAnalyzer
         }
         #region 静的フィールド
         //共通変数
-        public static ClassCommonVariableDefine CommonVariableDefine;
+        private static ClassCommonVariableDefine CommonVariableDefine;
         //ホールデータ
-        public static ClassHallData HallData;
+        internal static ClassHallData HallData;
         //機種スペックデータ
-        public static List<ClassModelDetailsInfo> ModelDetailsInfoList;
+        private static List<ClassModelSpecData> ModelSpecDataList;
         //DataGridViewGrouper(台データ)
-        public static Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = null;
+        private static Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = null;
         #endregion
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ExpAnalyzer
                 ClassCommonVariableDefine CommonVariableDefine = new ClassCommonVariableDefine();
 
                 //インストーラー作成後、ModelDetailsInfo.iniはAppDataへ格納
-                CommonVariableDefine.InputInitFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelDetailsInfo.ini";
+                CommonVariableDefine.ModelSpecDataFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelDetailsInfo.ini";
 
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -57,7 +57,7 @@ namespace ExpAnalyzer
                 DispDailyData.DisplayDailyDataOnChart(ChartDailyData, null, null, null);
 
                 //設定ファイルから機種詳細情報を読込み
-                ModelDetailsInfoList = ReadInitFile.ReadModelDetailsInfo(CommonVariableDefine.InputInitFilePath);
+                ModelSpecDataList = ReadInitFile.ReadModelDetailsInfo(CommonVariableDefine.ModelSpecDataFilePath);
                 return;
             }
             catch (Exception ex)
@@ -90,7 +90,7 @@ namespace ExpAnalyzer
                 {
                     CommonVariableDefine = new ClassCommonVariableDefine();
 
-                    CommonVariableDefine.InputExcelFilePath = Ofd.FileName;
+                    CommonVariableDefine.HallDataFilePath = Ofd.FileName;
                     TextBoxReadExcelPath.Text = Ofd.FileName;
                 }
                 return;
@@ -109,7 +109,7 @@ namespace ExpAnalyzer
         {
             try
             {
-                if (System.IO.File.Exists(CommonVariableDefine.InputExcelFilePath) == true)
+                if (System.IO.File.Exists(CommonVariableDefine.HallDataFilePath) == true)
                 {
                     ClassReadExcel ReadExcel = new ClassReadExcel();
                     ClassDispHallData DispHallData = new ClassDispHallData();
@@ -117,7 +117,7 @@ namespace ExpAnalyzer
                     ClassDispModelDetailsInfo DispModelDetailsInfo = new ClassDispModelDetailsInfo();
 
                     //Excelからホールデータを読込み
-                    HallData = ReadExcel.ReadHallDataFromExcel(CommonVariableDefine.InputExcelFilePath);
+                    HallData = ReadExcel.ReadHallDataFromExcel(CommonVariableDefine.HallDataFilePath);
 
                     //店舗名をテキストボックスへ表示
                     TextBoxStoreName.Text = HallData.HallName;
@@ -129,7 +129,7 @@ namespace ExpAnalyzer
                     DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
                         this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
                         this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
-                        ModelDetailsInfoList, ComboBoxModelName.SelectedItem.ToString());
+                        ModelSpecDataList, ComboBoxModelName.SelectedItem.ToString());
 
                     //台データをDataGridViewへ表示
                     DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
@@ -199,7 +199,7 @@ namespace ExpAnalyzer
                 DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
                     this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
                     this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
-                    ModelDetailsInfoList, ComboBoxModelName.SelectedItem.ToString());
+                    ModelSpecDataList, ComboBoxModelName.SelectedItem.ToString());
 
                 //台データをDataGridViewへ表示
                 DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
@@ -325,10 +325,10 @@ namespace ExpAnalyzer
                         string unitNum = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[0].Value);
 
                         //日付
-                        string date = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[1].Value);
+                        string dateTime = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[1].Value);
 
                         //デイリー履歴データをグラフへ表示
-                        DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, date);
+                        DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, dateTime);
                     }
                 }
                 return;

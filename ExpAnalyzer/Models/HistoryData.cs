@@ -5,15 +5,15 @@ namespace ExpAnalyzer.Models
     /// <summary>
     /// 履歴データクラス
     /// </summary>
-    public class ClassHistoryData
+    internal class ClassHistoryData
     {
         /// <summary>
         /// 回転数
         /// </summary>
-        public int RotateCount { get; set; }
+        internal int RotateCount { get; set; }
         /// <summary>
-        /// ステータス
+        /// 大当り種別
         /// </summary>
-        public int HitStatus { get; set; }
+        internal int HitType { get; set; }
     }
 }

@@ -21,14 +21,14 @@ namespace ExpAnalyzer.Controller.GlaphMapping
         public class ClassTargetDailyData
         {
             public int RotateCount;
-            public int HitStatus;
+            public int HitType;
             public int ProbVarHitCount;
         }
 
         /// <summary>
         /// デイリー履歴データをグラフへ表示
         /// </summary>
-        public void DisplayDailyDataOnChart(Chart ChartDailyData, string modelName, string unitNum, string date)
+        public void DisplayDailyDataOnChart(Chart ChartDailyData, string modelName, string unitNum, string dateTime)
         {
             //グラフを初期化
             ChartDailyData.Series.Clear();
@@ -71,13 +71,13 @@ namespace ExpAnalyzer.Controller.GlaphMapping
             Series DataMakers = new Series();
             DataMakers.ChartType = SeriesChartType.Column;
 
-            if (modelName != null && unitNum != null && date != null)
+            if (modelName != null && unitNum != null && dateTime != null)
             {
                 //対象デイリーデータを取得
-                List<ClassTargetDailyData> TargetDailyDataList = GetTargetDailyData(modelName, unitNum, date);
+                List<ClassTargetDailyData> TargetDailyDataList = GetTargetDailyData(modelName, unitNum, dateTime);
 
                 if (TargetDailyDataList[0].RotateCount != -1
-                    && TargetDailyDataList[0].HitStatus != -1 && TargetDailyDataList[0].ProbVarHitCount != -1)
+                    && TargetDailyDataList[0].HitType != -1 && TargetDailyDataList[0].ProbVarHitCount != -1)
                 {
                     int labelPosition = 1;
 
@@ -85,7 +85,7 @@ namespace ExpAnalyzer.Controller.GlaphMapping
                     {
                         DataMakers.Points.AddXY(Convert.ToDouble(i + 0.5), TargetDailyDataList[i].RotateCount);
 
-                        switch (TargetDailyDataList[i].HitStatus)
+                        switch (TargetDailyDataList[i].HitType)
                         {
                             case 1:
                                 DataMakers.Points[i].Color = Color.Red;
@@ -120,7 +120,7 @@ namespace ExpAnalyzer.Controller.GlaphMapping
         /// <summary>
         /// 対象デイリーデータを取得
         /// </summary>
-        private static List<ClassTargetDailyData> GetTargetDailyData(string modelName, string unitNum, string date)
+        private static List<ClassTargetDailyData> GetTargetDailyData(string modelName, string unitNum, string dateTime)
         {
             List<ClassTargetDailyData> TargetDailyDataList = new List<ClassTargetDailyData>();
 
@@ -143,27 +143,27 @@ namespace ExpAnalyzer.Controller.GlaphMapping
                             {
                                 if (TargetDailyDataList.Count != 0) break;
 
-                                if (DailyData.Date.ToString("yyyy/MM/dd") == date)
+                                if (DailyData.DateTime.ToString("yyyy/MM/dd") == dateTime)
                                 {
                                     for (int i = 0; i < DailyData.HistoryDataList.Count; i++)
                                     {
-                                        switch (DailyData.HistoryDataList[i].HitStatus)
+                                        switch (DailyData.HistoryDataList[i].HitType)
                                         {
                                             case 1:
                                                 //確変当り
-                                                if (DailyData.HistoryDataList[i + 1].HitStatus == 2)
+                                                if (DailyData.HistoryDataList[i + 1].HitType == 2)
                                                 {
                                                     TargetDailyData = new ClassTargetDailyData();
                                                     
                                                     if (TargetDailyDataList.Count == 0)
                                                     {
-                                                        TargetDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount + GetBeforeRemainRotateCount(UnitData, date);
+                                                        TargetDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount + GetBeforeRemainRotateCount(UnitData, dateTime);
                                                     }
                                                     else
                                                     {
                                                         TargetDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount;
                                                     }
-                                                    TargetDailyData.HitStatus = 2;
+                                                    TargetDailyData.HitType = 2;
                                                 }
                                                 //単発当り
                                                 else
@@ -172,13 +172,13 @@ namespace ExpAnalyzer.Controller.GlaphMapping
 
                                                     if (TargetDailyDataList.Count == 0)
                                                     {
-                                                        TargetDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount + GetBeforeRemainRotateCount(UnitData, date);
+                                                        TargetDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount + GetBeforeRemainRotateCount(UnitData, dateTime);
                                                     }
                                                     else
                                                     {
                                                         TargetDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount;
                                                     }
-                                                    TargetDailyData.HitStatus = 1;
+                                                    TargetDailyData.HitType = 1;
                                                     TargetDailyData.ProbVarHitCount = 0;
                                                     TargetDailyDataList.Add(TargetDailyData);
                                                 }
@@ -186,8 +186,8 @@ namespace ExpAnalyzer.Controller.GlaphMapping
 
                                             case 2:
                                                 //確変継続
-                                                if (DailyData.HistoryDataList[i + 1].HitStatus != 0
-                                                    && DailyData.HistoryDataList[i + 1].HitStatus != 1)
+                                                if (DailyData.HistoryDataList[i + 1].HitType != 0
+                                                    && DailyData.HistoryDataList[i + 1].HitType != 1)
                                                 {
                                                     prebVarHitCount++;
                                                 }
@@ -207,7 +207,7 @@ namespace ExpAnalyzer.Controller.GlaphMapping
                                                 {
                                                     TargetDailyData = new ClassTargetDailyData();
                                                     TargetDailyData.RotateCount = -1;
-                                                    TargetDailyData.HitStatus = -1;
+                                                    TargetDailyData.HitType = -1;
                                                     TargetDailyData.ProbVarHitCount = -1;
                                                     TargetDailyDataList.Add(TargetDailyData);
                                                     return TargetDailyDataList;
@@ -227,23 +227,23 @@ namespace ExpAnalyzer.Controller.GlaphMapping
         /// <summary>
         /// 前日の残り回転数を取得
         /// </summary>
-        private static int GetBeforeRemainRotateCount(ClassUnitData UnitData, string date)
+        private static int GetBeforeRemainRotateCount(ClassUnitData UnitData, string dateTime)
         {
             int remainRotateCount = 0;
 
             foreach (ClassDailyData DailyData in UnitData.DailyDataList)
             {
-                if (DailyData.Date.ToString("yyyy/MM/dd") != date)
+                if (DailyData.DateTime.ToString("yyyy/MM/dd") != dateTime)
                 {
                     foreach (ClassHistoryData HistoryData in DailyData.HistoryDataList)
                     {
-                        if (HistoryData.HitStatus == 0)
+                        if (HistoryData.HitType == 0)
                         {
                             //残り回転数
                             remainRotateCount += HistoryData.RotateCount;
                             break;
                         }
-                        else if (HistoryData.HitStatus == -1)
+                        else if (HistoryData.HitType == -1)
                         {
                             //定休日または故障台
                             break;

@@ -33,7 +33,7 @@ namespace ExpAnalyzer.Controller.Inport
         public const string MODEL_NAME = "機種名";
         public const string INSTALL_NUMBER = "設置台数";
         public const string RTATE_COUNT = "回転数";
-        public const string HIT_STATUS = "ステータス";
+        public const string HIT_TYPE = "大当り種別";
 
         /// <summary>
         /// Excelからホールデータを読込み
@@ -108,7 +108,7 @@ namespace ExpAnalyzer.Controller.Inport
                                         }
                                         UnitData.UnitNum = Convert.ToString(Worksheet.Cells[i, DEFAULT_COLUMN].Value);
 
-                                        //回転数と大当りステータスの取得
+                                        //回転数と大当り種別の取得
                                         UnitData.DailyDataList = GetRotateCountAndHitStatus(Worksheet, i, DEFAULT_COLUMN);
 
                                         //1台毎の台データをリストへ追加
@@ -133,7 +133,7 @@ namespace ExpAnalyzer.Controller.Inport
         }
 
         /// <summary>
-        /// 回転数と大当りステータスの取得
+        /// 回転数と大当り種別の取得
         /// </summary>
         private static List<ClassDailyData> GetRotateCountAndHitStatus(ExcelWorksheet Worksheet, int defRow, int defColumn)
         {
@@ -148,10 +148,10 @@ namespace ExpAnalyzer.Controller.Inport
                 if (DateTime.TryParse(Convert.ToString(Worksheet.Cells[defRow, column].Value), out DateTime dateTime) == true)
                 {
                     //日付
-                    DailyData.Date = dateTime;
+                    DailyData.DateTime = dateTime;
 
                     if (Convert.ToString(Worksheet.Cells[defRow + 1, column].Value) == RTATE_COUNT
-                        && Convert.ToString(Worksheet.Cells[defRow + 1, column + 1].Value) == HIT_STATUS)
+                        && Convert.ToString(Worksheet.Cells[defRow + 1, column + 1].Value) == HIT_TYPE)
                     {
                         int row = defRow + 2;
 
@@ -161,16 +161,16 @@ namespace ExpAnalyzer.Controller.Inport
                             //定休日または故障台
                             ClassHistoryData HistoryData = new ClassHistoryData();
                             HistoryData.RotateCount = -1;
-                            HistoryData.HitStatus = -1;
+                            HistoryData.HitType = -1;
                             DailyData.HistoryDataList.Add(HistoryData);
                         }
                         else
                         {
                             ClassHistoryData HistoryData = new ClassHistoryData();
                             int rotateCount = 0;
-                            int hitStatus = 0;
+                            int hitType = 0;
 
-                            //ステータス(0)でない場合は探索
+                            //大当り種別(0)でない場合は探索
                             while (int.Parse(Convert.ToString(Worksheet.Cells[row, column + 1].Value)) != 0)
                             {
                                 HistoryData = new ClassHistoryData();
@@ -182,17 +182,17 @@ namespace ExpAnalyzer.Controller.Inport
                                 }
                                 HistoryData.RotateCount = rotateCount;
 
-                                //ステータス
-                                if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column + 1].Value), out hitStatus) != true)
+                                //大当り種別
+                                if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column + 1].Value), out hitType) != true)
                                 {
-                                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column + 1), ")のステータスの取得に失敗しました。"));
+                                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column + 1), ")の大当り種別の取得に失敗しました。"));
                                 }
-                                HistoryData.HitStatus = hitStatus;
+                                HistoryData.HitType = hitType;
 
                                 DailyData.HistoryDataList.Add(HistoryData);
                                 row++;
                             }
-                            //ステータス(0)を1行だけ取得 (残スタート回転数)
+                            //大当り種別(0)を1行だけ取得 (残スタート回転数)
                             HistoryData = new ClassHistoryData();
 
                             //回転数
@@ -203,12 +203,12 @@ namespace ExpAnalyzer.Controller.Inport
                             }
                             HistoryData.RotateCount = rotateCount;
 
-                            //ステータス
-                            if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column + 1].Value), out hitStatus) != true)
+                            //大当り種別
+                            if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column + 1].Value), out hitType) != true)
                             {
-                                throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column + 1), ")のステータスの取得に失敗しました。"));
+                                throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column + 1), ")の大当り種別の取得に失敗しました。"));
                             }
-                            HistoryData.HitStatus = hitStatus;
+                            HistoryData.HitType = hitType;
 
                             DailyData.HistoryDataList.Add(HistoryData);
                         }
@@ -229,7 +229,7 @@ namespace ExpAnalyzer.Controller.Inport
                 }
                 else
                 {
-                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(defRow, column), ")の日付情報の取得に失敗しました。"));
+                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(defRow, column), ")の日付の取得に失敗しました。"));
                 }
             }
             return DayliDataList;

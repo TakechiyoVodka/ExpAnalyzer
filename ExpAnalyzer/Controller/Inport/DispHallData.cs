@@ -21,7 +21,7 @@ namespace ExpAnalyzer.Controller.Inport
         public class ClassDispUnitData
         {
             public string UnitNum;
-            public DateTime Date;
+            public DateTime DateTime;
             public int TotalFirstHitCount;
             public int TotalProbVarHitCount;
             public int TotalHitCount;
@@ -75,7 +75,7 @@ namespace ExpAnalyzer.Controller.Inport
                 DataRow dr = dt.NewRow();
 
                 dr.SetField(dc_unitNumber, DispUnitData.UnitNum);
-                dr.SetField(dc_dateTime, DispUnitData.Date.ToString("yyyy/MM/dd"));
+                dr.SetField(dc_dateTime, DispUnitData.DateTime.ToString("yyyy/MM/dd"));
 
                 if (DispUnitData.TotalFirstHitCount != -1)
                 {
@@ -143,11 +143,11 @@ namespace ExpAnalyzer.Controller.Inport
                             DispUnitData.UnitNum = UnitData.UnitNum;
 
                             //日付
-                            DispUnitData.Date = DailyData.Date;
+                            DispUnitData.DateTime = DailyData.DateTime;
 
                             foreach (ClassHistoryData HistoryData in DailyData.HistoryDataList)
                             {
-                                switch (HistoryData.HitStatus)
+                                switch (HistoryData.HitType)
                                 {
                                     case 0:
                                         remainRotateCount = HistoryData.RotateCount;
@@ -164,7 +164,7 @@ namespace ExpAnalyzer.Controller.Inport
                                         break;
                                     default:
                                         //定休日または故障台
-                                        if (HistoryData.HitStatus == -1)
+                                        if (HistoryData.HitType == -1)
                                         {
                                             totalFirstHitCount = -1;
                                             totalProbVarHitCount = -1;

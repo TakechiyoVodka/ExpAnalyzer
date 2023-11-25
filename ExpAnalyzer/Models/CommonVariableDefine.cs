@@ -9,16 +9,16 @@ namespace ExpAnalyzer.Models
     /// <summary>
     /// 共通変数クラス
     /// </summary>
-    public class ClassCommonVariableDefine
+    internal class ClassCommonVariableDefine
     {
         /// <summary>
-        /// 入力機種情報ファイルパス
+        /// 機種スペックデータファイルパス
         /// </summary>
-        public string InputInitFilePath { get; set; }
+        internal string ModelSpecDataFilePath { get; set; }
 
         /// <summary>
-        /// 入力Excelファイルパス
+        /// ホールデータファイルパス
         /// </summary>
-        public string InputExcelFilePath { get; set; }
+        internal string HallDataFilePath { get; set; }
     }
 }

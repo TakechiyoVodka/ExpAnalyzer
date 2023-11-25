@@ -6,15 +6,15 @@ namespace ExpAnalyzer.Models
     /// <summary>
     /// ホールデータクラス
     /// </summary>
-    public class ClassHallData
+    internal class ClassHallData
     {
         /// <summary>
         /// ホール名
         /// </summary>
-        public string HallName { get; set; }
+        internal string HallName { get; set; }
         /// <summary>
         /// 機種データリスト
         /// </summary>
-        public List<ClassModelData> ModelDataList = new List<ClassModelData>();
+        internal List<ClassModelData> ModelDataList = new List<ClassModelData>();
     }
 }

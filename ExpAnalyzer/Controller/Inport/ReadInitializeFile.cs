@@ -29,13 +29,13 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 設定ファイルから機種詳細情報を読込み
         /// </summary>
-        public List<ClassModelDetailsInfo> ReadModelDetailsInfo(string InportInitFilePath)
+        public List<ClassModelSpecData> ReadModelDetailsInfo(string InportInitFilePath)
         {
-            List<ClassModelDetailsInfo> ModelDetailsInfoList = new List<ClassModelDetailsInfo>();
+            List<ClassModelSpecData> ModelSpecDataList = new List<ClassModelSpecData>();
 
             using (StreamReader sr = new StreamReader(InportInitFilePath, System.Text.Encoding.Default))
             {
-                ClassModelDetailsInfo ModelDetailsInfo = new ClassModelDetailsInfo();
+                ClassModelSpecData ModelDetailsInfo = new ClassModelSpecData();
                 int modelNum = 0;
                 bool readFlg = false;
 
@@ -148,15 +148,15 @@ namespace ExpAnalyzer.Controller.Inport
                                 && ModelDetailsInfo.ProbVarHitPersisRate != 0 && ModelDetailsInfo.SpecialTime != 0
                                 && ModelDetailsInfo.SavingTime != 0 && ModelDetailsInfo.CTime != 0)
                             {
-                                ModelDetailsInfoList.Add(ModelDetailsInfo);
-                                ModelDetailsInfo = new ClassModelDetailsInfo();
+                                ModelSpecDataList.Add(ModelDetailsInfo);
+                                ModelDetailsInfo = new ClassModelSpecData();
                                 readFlg = false;
                             }
                         }
                     }
                 }
             }
-            return ModelDetailsInfoList;
+            return ModelSpecDataList;
         }
     }
 }
