@@ -30,23 +30,6 @@ namespace ExpAnalyzer.Controller.Inport
         }
 
         /// <summary>
-        /// 機種データをコンボボックスへ表示
-        /// </summary>
-        internal void DispModelDataInComboBox(ComboBox ComboBoxModelName)
-        {
-            //コンボボックス初期化
-            ComboBoxModelName.Items.Clear();
-
-            foreach (ClassModelData ModelData in FormMain.HallData.ModelDataList)
-            {
-                ComboBoxModelName.Items.Add(ModelData.ModelName);
-            }
-            ComboBoxModelName.SelectedIndex = 0;
-
-            return;
-        }
-
-        /// <summary>
         /// 台データをDataGridViewへ表示
         /// </summary>
         internal Subro.Controls.DataGridViewGrouper DispUnitDataOnDataGridView(

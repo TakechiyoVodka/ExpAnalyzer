@@ -59,11 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
-    <Compile Include="Controller\GlaphMapping\DailyDataOnChart.cs" />
+    <Compile Include="Controller\Inport\DailyDataOnChart.cs" />
+    <Compile Include="Controller\Inport\ModelDataOnComboBox.cs" />
     <Compile Include="Controller\Inport\UnitDataOnDataGridView.cs" />
     <Compile Include="Controller\Inport\ModelSpecDataOnTextBox.cs" />
     <Compile Include="Controller\Inport\InportHallDataFile.cs" />
-    <Compile Include="Controller\Inport\ReadInitializeFile.cs" />
+    <Compile Include="Controller\Inport\InportModelSpecDataFile.cs" />
     <Compile Include="Models\CommonVariableDefine.cs" />
     <Compile Include="Views\FormMain.cs">
       <SubType>Form</SubType>
@@ -115,6 +116,7 @@
   <ItemGroup>
     <Folder Include="Controller\Calculate\" />
     <Folder Include="Controller\Export\" />
+    <Folder Include="Controller\GlaphMapping\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EPPlus">

@@ -116,6 +116,7 @@ namespace ExpAnalyzer
                     ClassUnitDataOnDataGridView UnitDataOnDataGridView = new ClassUnitDataOnDataGridView();
                     ClassDailyDataOnChart DailyDataOnChart = new ClassDailyDataOnChart();
                     ClassModelSpecDataOnTextBox ModelSpecDataOnTextBox = new ClassModelSpecDataOnTextBox();
+                    ClassModelDataOnComboBox ModelDataOnComboBox = new ClassModelDataOnComboBox();
 
                     //Excelからホールデータを読込み
                     HallData = InportHallDataFile.InportHallDataFromExcel(CommonVariableDefine.HallDataFilePath);
@@ -124,7 +125,7 @@ namespace ExpAnalyzer
                     TextBoxStoreName.Text = HallData.HallName;
 
                     //機種データをコンボボックスへ表示
-                    UnitDataOnDataGridView.DispModelDataInComboBox(ComboBoxModelName);
+                    ModelDataOnComboBox.DispModelDataOnComboBox(ComboBoxModelName);
 
                     //テキストボックスへ機種スペック情報を表示
                     ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(this.TextBoxFirstHitProb,
