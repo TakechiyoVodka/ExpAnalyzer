@@ -10,26 +10,26 @@ using System.Threading.Tasks;
 namespace ExpAnalyzer.Controller.Inport
 {
     /// <summary>
-    /// 初期設定ファイル読込みクラス
+    /// 機種スペックデータファイル読込みクラス
     /// </summary>
-    internal class ClassReadInitializeFile
+    internal class ClassInportModelSpecDataFile
     {
         /// <summary>
         /// データ種別定義
         /// </summary>
-        public const string MODEL_NAME = "ModelName";
-        public const string FIRSTHIT_PROB = "FirstHitProb";
-        public const string PROBVARHIT_PROB = "ProbVarHitProb";
-        public const string PROBVARHIT_RASHRATE = "ProbVarHitRashRate";
-        public const string PROBVARHIT_PERSISRATE = "ProbVarHitPersisRate";
-        public const string SPECIAL_TIME = "SpecialTime";
-        public const string SAVING_TIME = "SavingTime";
-        public const string C_TIME = "CTime";
+        private const string MODEL_NAME = "ModelName";
+        private const string FIRSTHIT_PROB = "FirstHitProb";
+        private const string PROBVARHIT_PROB = "ProbVarHitProb";
+        private const string PROBVARHIT_RASHRATE = "ProbVarHitRashRate";
+        private const string PROBVARHIT_PERSISRATE = "ProbVarHitPersisRate";
+        private const string SPECIAL_TIME = "SpecialTime";
+        private const string SAVING_TIME = "SavingTime";
+        private const string C_TIME = "CTime";
 
         /// <summary>
-        /// 設定ファイルから機種詳細情報を読込み
+        /// テキストファイルから機種スペックデータを読込み
         /// </summary>
-        public List<ClassModelSpecData> ReadModelDetailsInfo(string InportInitFilePath)
+        internal List<ClassModelSpecData> InportModelSpecDataFromTextFile(string InportInitFilePath)
         {
             List<ClassModelSpecData> ModelSpecDataList = new List<ClassModelSpecData>();
 

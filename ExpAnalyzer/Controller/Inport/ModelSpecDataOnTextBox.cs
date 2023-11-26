@@ -9,14 +9,14 @@ using System.Windows.Forms;
 namespace ExpAnalyzer.Controller.Inport
 {
     /// <summary>
-    /// 表示用機種スペックデータクラス
+    /// 機種スペックデータのテキストボックスクラス
     /// </summary>
-    internal class ClassDispModelDetailsInfo
+    internal class ClassModelSpecDataOnTextBox
     {
         /// <summary>
         /// テキストボックスへ機種スペック情報を表示
         /// </summary>
-        public void DispModelDetailsInfoOnTextBox(
+        internal void DispModelSpecDataOnTextBox(
             TextBox TextBoxFirstHitProb,
             TextBox TextBoxProbVarHitProb,
             TextBox TextBoxProbVarHitRashRate,

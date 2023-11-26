@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,22 +43,22 @@ namespace ExpAnalyzer
         {
             try
             {
-                ClassDispDailyData DispDailyData = new ClassDispDailyData();
-                ClassReadInitializeFile ReadInitFile = new ClassReadInitializeFile();
+                ClassDailyDataOnChart DailyDataOnChart = new ClassDailyDataOnChart();
+                ClassInportModelSpecDataFile InportModelSpecDataFile = new ClassInportModelSpecDataFile();
                 ClassCommonVariableDefine CommonVariableDefine = new ClassCommonVariableDefine();
 
-                //インストーラー作成後、ModelDetailsInfo.iniはAppDataへ格納
-                CommonVariableDefine.ModelSpecDataFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelDetailsInfo.ini";
+                //インストーラー作成後、ModelSpecData.iniはAppDataへ格納
+                CommonVariableDefine.ModelSpecDataFilePath = @"C:\Users\TakehiroSomekawa\source\repos\ExpAnalyzer\ExpAnalyzer\Servesers\ModelSpecData.ini";
 
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
                 ComboBoxModelName.Items.Clear();
 
-                //デイリー履歴データをグラフへ表示(枠線のみ表示)
-                DispDailyData.DisplayDailyDataOnChart(ChartDailyData, null, null, null);
+                //デイリーデータをグラフへ表示 ※枠線のみ表示
+                DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, null, null, null);
 
                 //設定ファイルから機種詳細情報を読込み
-                ModelSpecDataList = ReadInitFile.ReadModelDetailsInfo(CommonVariableDefine.ModelSpecDataFilePath);
+                ModelSpecDataList = InportModelSpecDataFile.InportModelSpecDataFromTextFile(CommonVariableDefine.ModelSpecDataFilePath);
                 return;
             }
             catch (Exception ex)
@@ -111,28 +112,28 @@ namespace ExpAnalyzer
             {
                 if (System.IO.File.Exists(CommonVariableDefine.HallDataFilePath) == true)
                 {
-                    ClassReadExcel ReadExcel = new ClassReadExcel();
-                    ClassDispHallData DispHallData = new ClassDispHallData();
-                    ClassDispDailyData DispDailyData = new ClassDispDailyData();
-                    ClassDispModelDetailsInfo DispModelDetailsInfo = new ClassDispModelDetailsInfo();
+                    ClassInportHallDataFile InportHallDataFile = new ClassInportHallDataFile();
+                    ClassUnitDataOnDataGridView UnitDataOnDataGridView = new ClassUnitDataOnDataGridView();
+                    ClassDailyDataOnChart DailyDataOnChart = new ClassDailyDataOnChart();
+                    ClassModelSpecDataOnTextBox ModelSpecDataOnTextBox = new ClassModelSpecDataOnTextBox();
 
                     //Excelからホールデータを読込み
-                    HallData = ReadExcel.ReadHallDataFromExcel(CommonVariableDefine.HallDataFilePath);
+                    HallData = InportHallDataFile.InportHallDataFromExcel(CommonVariableDefine.HallDataFilePath);
 
                     //店舗名をテキストボックスへ表示
                     TextBoxStoreName.Text = HallData.HallName;
 
                     //機種データをコンボボックスへ表示
-                    DispHallData.DisplayModelDataInComboBox(ComboBoxModelName);
+                    UnitDataOnDataGridView.DispModelDataInComboBox(ComboBoxModelName);
 
                     //テキストボックスへ機種スペック情報を表示
-                    DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
+                    ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(this.TextBoxFirstHitProb,
                         this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
                         this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
                         ModelSpecDataList, ComboBoxModelName.SelectedItem.ToString());
 
                     //台データをDataGridViewへ表示
-                    DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
+                    DataGridViewUnitDataGrouper = UnitDataOnDataGridView.DispUnitDataOnDataGridView(
                         this.DataGridViewUnitData, this.ButtonOpenUnitDataGroup, this.ButtonCloseUnitDataGroup, ComboBoxModelName.SelectedItem.ToString());
 
                     //選択機種の先頭日の履歴データをグラフへ表示
@@ -189,20 +190,20 @@ namespace ExpAnalyzer
         {
             try
             {
-                ClassDispHallData DispHallData = new ClassDispHallData();
-                ClassDispModelDetailsInfo DispModelDetailsInfo = new ClassDispModelDetailsInfo();
+                ClassUnitDataOnDataGridView UnitDataOnDataGridView = new ClassUnitDataOnDataGridView();
+                ClassModelSpecDataOnTextBox ModelSpecDataOnTextBox = new ClassModelSpecDataOnTextBox();
 
                 //DataGridViewグループのリソース解放
                 DataGridViewUnitDataGrouper.Dispose();
 
                 //テキストボックスへ機種スペック情報を表示
-                DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
+                ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(this.TextBoxFirstHitProb,
                     this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
                     this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
                     ModelSpecDataList, ComboBoxModelName.SelectedItem.ToString());
 
                 //台データをDataGridViewへ表示
-                DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
+                DataGridViewUnitDataGrouper = UnitDataOnDataGridView.DispUnitDataOnDataGridView(
                     this.DataGridViewUnitData, this.ButtonOpenUnitDataGroup, this.ButtonCloseUnitDataGroup, ComboBoxModelName.SelectedItem.ToString());
 
                 //選択機種の先頭日の履歴データをグラフへ表示
@@ -264,10 +265,10 @@ namespace ExpAnalyzer
         {
             try
             {
-                ClassDispHallData DispHallData = new ClassDispHallData();
+                ClassUnitDataOnDataGridView UnitDataOnDataGridView = new ClassUnitDataOnDataGridView();
 
                 //DataGridViewの表示設定(更新)
-                DispHallData.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
+                UnitDataOnDataGridView.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
                 return;
             }
             catch (Exception ex)
@@ -284,10 +285,10 @@ namespace ExpAnalyzer
         {
             try
             {
-                ClassDispHallData DispHallData = new ClassDispHallData();
+                ClassUnitDataOnDataGridView UnitDataOnDataGridView = new ClassUnitDataOnDataGridView();
 
                 //DataGridViewの表示設定(更新)
-                DispHallData.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
+                UnitDataOnDataGridView.SetDataGridViewDisplaySetting(this.DataGridViewUnitData);
                 return;
             }
             catch (Exception ex)
@@ -310,7 +311,7 @@ namespace ExpAnalyzer
                     && DataGridViewUnitData.SelectedCells[0].ColumnIndex != -1
                     && DataGridViewUnitData.SelectedCells[0].Value != null)
                 {
-                    ClassDispDailyData DispDailyData = new ClassDispDailyData();
+                    ClassDailyDataOnChart DailyDataOnChart = new ClassDailyDataOnChart();
                     int row = DataGridViewUnitData.SelectedCells[0].RowIndex;
 
                     if (DataGridViewUnitData.Rows[row].Cells[1].Value != null)
@@ -327,8 +328,8 @@ namespace ExpAnalyzer
                         //日付
                         string dateTime = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[1].Value);
 
-                        //デイリー履歴データをグラフへ表示
-                        DispDailyData.DisplayDailyDataOnChart(ChartDailyData, modelName, unitNum, dateTime);
+                        //デイリーデータをグラフへ表示
+                        DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, modelName, unitNum, dateTime);
                     }
                 }
                 return;

@@ -17,28 +17,28 @@ using System.Net.NetworkInformation;
 namespace ExpAnalyzer.Controller.Inport
 {
     /// <summary>
-    /// 読込みExcelデータクラス
+    /// ホールデータファイル読込みクラス
     /// </summary>
-    internal class ClassReadExcel
+    internal class ClassInportHallDataFile
     {
         /// <summary>
         /// 定数定義
         /// </summary>
-        public const int DEFAULT_COLUMN = 2;
-        public const int SKIP_CELL_COUNT = 103;
+        private const int DEFAULT_COLUMN = 2;
+        private const int SKIP_CELL_COUNT = 103;
 
         /// <summary>
         /// データ種別定義
         /// </summary>
-        public const string MODEL_NAME = "機種名";
-        public const string INSTALL_NUMBER = "設置台数";
-        public const string RTATE_COUNT = "回転数";
-        public const string HIT_TYPE = "大当り種別";
+        private const string MODEL_NAME = "機種名";
+        private const string INSTALL_NUMBER = "設置台数";
+        private const string RTATE_COUNT = "回転数";
+        private const string HIT_TYPE = "大当り種別";
 
         /// <summary>
         /// Excelからホールデータを読込み
         /// </summary>
-        public ClassHallData ReadHallDataFromExcel(string InportWorkBookPath)
+        internal ClassHallData InportHallDataFromExcel(string InportWorkBookPath)
         {
             ClassHallData HallData = new ClassHallData();
 
@@ -46,7 +46,7 @@ namespace ExpAnalyzer.Controller.Inport
             using (FileStream fs = new FileStream(InportWorkBookPath, FileMode.Open, FileAccess.Read))
             {
                 //Excel共通関数
-                ClassExcelCommonFunction　ExcelComFunc = new ClassExcelCommonFunction();
+                ClassExcelCommonFunction　ExcelCommonFunction = new ClassExcelCommonFunction();
 
                 using (ExcelPackage ExcelPkg = new ExcelPackage(InportWorkBookPath))
                 {
@@ -82,7 +82,7 @@ namespace ExpAnalyzer.Controller.Inport
 
                                     if (Convert.ToString(Worksheet.Cells[i, DEFAULT_COLUMN + 1].Value) == "")
                                     {
-                                        throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(i, DEFAULT_COLUMN + 1), ")の機種名の取得に失敗しました。"));
+                                        throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(i, DEFAULT_COLUMN + 1), ")の機種名の取得に失敗しました。"));
                                     }
                                     ModelData.ModelName = Convert.ToString(Worksheet.Cells[i, DEFAULT_COLUMN + 1].Value);
                                     break;
@@ -92,7 +92,7 @@ namespace ExpAnalyzer.Controller.Inport
 
                                     if (int.TryParse(Convert.ToString(Worksheet.Cells[i, DEFAULT_COLUMN + 1].Value), out int installNum) != true)
                                     {
-                                        throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(i, DEFAULT_COLUMN + 1), ")の設置台数の取得に失敗しました。"));
+                                        throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(i, DEFAULT_COLUMN + 1), ")の設置台数の取得に失敗しました。"));
                                     }
                                     ModelData.InstallNum = installNum;
                                     break;
@@ -104,12 +104,12 @@ namespace ExpAnalyzer.Controller.Inport
                                     {
                                         if (Regex.IsMatch(Convert.ToString(Worksheet.Cells[i, DEFAULT_COLUMN].Value), "^\\d+$") != true)
                                         {
-                                            throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(i, DEFAULT_COLUMN), ")の台番号の取得に失敗しました。"));
+                                            throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(i, DEFAULT_COLUMN), ")の台番号の取得に失敗しました。"));
                                         }
                                         UnitData.UnitNum = Convert.ToString(Worksheet.Cells[i, DEFAULT_COLUMN].Value);
 
                                         //回転数と大当り種別の取得
-                                        UnitData.DailyDataList = GetRotateCountAndHitStatus(Worksheet, i, DEFAULT_COLUMN);
+                                        UnitData.DailyDataList = GetRotateCountAndHitType(Worksheet, i, DEFAULT_COLUMN);
 
                                         //1台毎の台データをリストへ追加
                                         ModelData.UnitDataList.Add(UnitData);
@@ -135,10 +135,10 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 回転数と大当り種別の取得
         /// </summary>
-        private static List<ClassDailyData> GetRotateCountAndHitStatus(ExcelWorksheet Worksheet, int defRow, int defColumn)
+        private static List<ClassDailyData> GetRotateCountAndHitType(ExcelWorksheet Worksheet, int defRow, int defColumn)
         {
             //Excel共通関数
-            ClassExcelCommonFunction ExcelComFunc = new ClassExcelCommonFunction();
+            ClassExcelCommonFunction ExcelCommonFunction = new ClassExcelCommonFunction();
             List<ClassDailyData> DayliDataList = new List<ClassDailyData>();
 
             for (int column = defColumn + 1; column < Worksheet.Columns.EndColumn; column++)
@@ -178,14 +178,14 @@ namespace ExpAnalyzer.Controller.Inport
                                 //回転数
                                 if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column].Value), out rotateCount) != true)
                                 {
-                                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column), ")の回転数の取得に失敗しました。"));
+                                    throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(row, column), ")の回転数の取得に失敗しました。"));
                                 }
                                 HistoryData.RotateCount = rotateCount;
 
                                 //大当り種別
                                 if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column + 1].Value), out hitType) != true)
                                 {
-                                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column + 1), ")の大当り種別の取得に失敗しました。"));
+                                    throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(row, column + 1), ")の大当り種別の取得に失敗しました。"));
                                 }
                                 HistoryData.HitType = hitType;
 
@@ -199,14 +199,14 @@ namespace ExpAnalyzer.Controller.Inport
 
                             if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column].Value), out rotateCount) != true)
                             {
-                                throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column), ")の回転数の取得に失敗しました。"));
+                                throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(row, column), ")の回転数の取得に失敗しました。"));
                             }
                             HistoryData.RotateCount = rotateCount;
 
                             //大当り種別
                             if (int.TryParse(Convert.ToString(Worksheet.Cells[row, column + 1].Value), out hitType) != true)
                             {
-                                throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(row, column + 1), ")の大当り種別の取得に失敗しました。"));
+                                throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(row, column + 1), ")の大当り種別の取得に失敗しました。"));
                             }
                             HistoryData.HitType = hitType;
 
@@ -219,17 +219,17 @@ namespace ExpAnalyzer.Controller.Inport
                     {
                         if (Convert.ToString(Worksheet.Cells[defRow + 1, column].Value) != RTATE_COUNT)
                         {
-                            throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(defRow + 1, column), ")の記載が不正です。"));
+                            throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(defRow + 1, column), ")の記載が不正です。"));
                         }
                         else
                         {
-                            throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(defRow + 1, column + 1), ")の記載が不正です。"));
+                            throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(defRow + 1, column + 1), ")の記載が不正です。"));
                         }
                     }
                 }
                 else
                 {
-                    throw new Exception(string.Concat("セル(", ExcelComFunc.ConvertNumToRange(defRow, column), ")の日付の取得に失敗しました。"));
+                    throw new Exception(string.Concat("セル(", ExcelCommonFunction.ConvCellNumToRange(defRow, column), ")の日付の取得に失敗しました。"));
                 }
             }
             return DayliDataList;

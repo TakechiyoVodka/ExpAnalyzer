@@ -14,7 +14,7 @@ namespace ExpAnalyzer.Controller.Common
         /// <summary>
         /// Excelのセル番号を範囲表記へ変換
         /// </summary>
-        public string ConvertNumToRange(int row, int column)
+        internal string ConvCellNumToRange(int row, int column)
         {
             string range = string.Empty;
             string alphabet = string.Empty;

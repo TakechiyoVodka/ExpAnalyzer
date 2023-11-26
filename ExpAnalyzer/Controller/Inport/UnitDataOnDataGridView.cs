@@ -11,14 +11,14 @@ using System.Windows.Forms;
 namespace ExpAnalyzer.Controller.Inport
 {
     /// <summary>
-    /// 表示用ホールデータクラス
+    /// 台データのDataGridViewクラス
     /// </summary>
-    internal class ClassDispHallData
+    internal class ClassUnitDataOnDataGridView
     {
         /// <summary>
-        /// 台データクラス (DataGridView表示用)
+        /// DataGridView表示用台データクラス
         /// </summary>
-        public class ClassDispUnitData
+        private class ClassDispUnitData
         {
             public string UnitNum;
             public DateTime DateTime;
@@ -32,7 +32,7 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 機種データをコンボボックスへ表示
         /// </summary>
-        public void DisplayModelDataInComboBox(ComboBox ComboBoxModelName)
+        internal void DispModelDataInComboBox(ComboBox ComboBoxModelName)
         {
             //コンボボックス初期化
             ComboBoxModelName.Items.Clear();
@@ -49,14 +49,14 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 台データをDataGridViewへ表示
         /// </summary>
-        public Subro.Controls.DataGridViewGrouper DisplayUnitDataInDataGridView(
+        internal Subro.Controls.DataGridViewGrouper DispUnitDataOnDataGridView(
             DataGridView DataGridViewUnitData,
             Button ButtonOpenGroup,
             Button ButtonCloseGroup,
             string SelectedModelName)
         {
             //DataGridViewへ表示する台データの計算
-            List<ClassDispUnitData> DispUnitDataList = CalcDisplayUnitData(SelectedModelName);
+            List<ClassDispUnitData> DispUnitDataList = CalcDispUnitData(SelectedModelName);
 
             //DataTable作成
             DataTable dt = new DataTable();
@@ -105,10 +105,8 @@ namespace ExpAnalyzer.Controller.Inport
             DataGridViewUnitDataGrouper.SetGroupOn(DataGridViewUnitData.Columns[0]);
             DataGridViewUnitDataGrouper.Options.StartCollapsed = false;
 
-            //グループの表示設定
-            DataGridViewUnitDataGrouper.DisplayGroup += DataGridViewUnitDataGrouper_DisplayGroup;
-
             //DataGridViewグループの表示設定
+            DataGridViewUnitDataGrouper.DisplayGroup += SetDataGridViewGrouperDisplaySetting;
             SetDataGridViewDisplaySetting(DataGridViewUnitData);
 
             return DataGridViewUnitDataGrouper;
@@ -117,7 +115,7 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// DataGridViewへ表示する台データの計算
         /// </summary>
-        private List<ClassDispUnitData> CalcDisplayUnitData(string SelectedModelName)
+        private List<ClassDispUnitData> CalcDispUnitData(string SelectedModelName)
         {
             List<ClassDispUnitData> DispUnitDataList = new List<ClassDispUnitData>();
 
@@ -199,22 +197,9 @@ namespace ExpAnalyzer.Controller.Inport
         }
 
         /// <summary>
-        /// DataGridViewグループの表示設定
-        /// </summary>
-        private void DataGridViewUnitDataGrouper_DisplayGroup(object sender, Subro.Controls.GroupDisplayEventArgs e)
-        {
-            e.ForeColor = Color.White;
-            e.BackColor = Color.OliveDrab;
-            e.Header = "";
-            e.Summary = "";
-            e.DisplayValue = e.DisplayValue.ToString();
-            return;
-        }
-
-        /// <summary>
         /// DataGridViewの表示設定
         /// </summary>
-        public void SetDataGridViewDisplaySetting(DataGridView Dgv)
+        internal void SetDataGridViewDisplaySetting(DataGridView Dgv)
         {
             //Visualスタイルを使用しない
             Dgv.EnableHeadersVisualStyles = false;
@@ -256,6 +241,19 @@ namespace ExpAnalyzer.Controller.Inport
                     Dgv.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
                 }
             }
+            return;
+        }
+
+        /// <summary>
+        /// DataGridViewグループの表示設定
+        /// </summary>
+        private void SetDataGridViewGrouperDisplaySetting(object sender, Subro.Controls.GroupDisplayEventArgs e)
+        {
+            e.ForeColor = Color.White;
+            e.BackColor = Color.OliveDrab;
+            e.Header = "";
+            e.Summary = "";
+            e.DisplayValue = e.DisplayValue.ToString();
             return;
         }
     }
