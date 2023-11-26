@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ButtonAnalysData = new System.Windows.Forms.Button();
-            this.ButtonReadExcel = new System.Windows.Forms.Button();
+            this.ButtonInportHallData = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.ComboBoxModelName = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBoxStoreName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ButtonReference = new System.Windows.Forms.Button();
-            this.TextBoxReadExcelPath = new System.Windows.Forms.TextBox();
+            this.TextBoxHallDataFilePath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DataGridViewUnitData = new System.Windows.Forms.DataGridView();
-            this.ButtonOpenGroup = new System.Windows.Forms.Button();
-            this.ButtonCloseGroup = new System.Windows.Forms.Button();
+            this.ButtonOpenUnitDataGroup = new System.Windows.Forms.Button();
+            this.ButtonCloseUnitDataGroup = new System.Windows.Forms.Button();
             this.ChartDailyData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ButtonSetting = new System.Windows.Forms.Button();
             this.groupBoxColor1 = new ExpAnalyzer.Views.GroupBoxColor();
@@ -82,21 +82,21 @@
             this.ButtonAnalysData.Text = "データ解析/レポート出力";
             this.ButtonAnalysData.UseVisualStyleBackColor = false;
             // 
-            // ButtonReadExcel
+            // ButtonInportHallData
             // 
-            this.ButtonReadExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.ButtonReadExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonReadExcel.Enabled = false;
-            this.ButtonReadExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ButtonReadExcel.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ButtonReadExcel.ForeColor = System.Drawing.Color.White;
-            this.ButtonReadExcel.Location = new System.Drawing.Point(648, 542);
-            this.ButtonReadExcel.Name = "ButtonReadExcel";
-            this.ButtonReadExcel.Size = new System.Drawing.Size(154, 46);
-            this.ButtonReadExcel.TabIndex = 37;
-            this.ButtonReadExcel.Text = "Excelデータ読み込み";
-            this.ButtonReadExcel.UseVisualStyleBackColor = false;
-            this.ButtonReadExcel.Click += new System.EventHandler(this.ButtonReadExcel_Click);
+            this.ButtonInportHallData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.ButtonInportHallData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonInportHallData.Enabled = false;
+            this.ButtonInportHallData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonInportHallData.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ButtonInportHallData.ForeColor = System.Drawing.Color.White;
+            this.ButtonInportHallData.Location = new System.Drawing.Point(648, 542);
+            this.ButtonInportHallData.Name = "ButtonInportHallData";
+            this.ButtonInportHallData.Size = new System.Drawing.Size(154, 46);
+            this.ButtonInportHallData.TabIndex = 37;
+            this.ButtonInportHallData.Text = "ホールデータ読込み";
+            this.ButtonInportHallData.UseVisualStyleBackColor = false;
+            this.ButtonInportHallData.Click += new System.EventHandler(this.ButtonInportHallData_Click);
             // 
             // label4
             // 
@@ -172,18 +172,18 @@
             this.ButtonReference.UseVisualStyleBackColor = false;
             this.ButtonReference.Click += new System.EventHandler(this.ButtonReference_Click);
             // 
-            // TextBoxReadExcelPath
+            // TextBoxHallDataFilePath
             // 
-            this.TextBoxReadExcelPath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
-            this.TextBoxReadExcelPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBoxReadExcelPath.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TextBoxReadExcelPath.ForeColor = System.Drawing.Color.White;
-            this.TextBoxReadExcelPath.Location = new System.Drawing.Point(12, 28);
-            this.TextBoxReadExcelPath.Name = "TextBoxReadExcelPath";
-            this.TextBoxReadExcelPath.ReadOnly = true;
-            this.TextBoxReadExcelPath.Size = new System.Drawing.Size(539, 23);
-            this.TextBoxReadExcelPath.TabIndex = 22;
-            this.TextBoxReadExcelPath.TextChanged += new System.EventHandler(this.TextBoxReadExcelPath_TextChanged);
+            this.TextBoxHallDataFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
+            this.TextBoxHallDataFilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TextBoxHallDataFilePath.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TextBoxHallDataFilePath.ForeColor = System.Drawing.Color.White;
+            this.TextBoxHallDataFilePath.Location = new System.Drawing.Point(12, 28);
+            this.TextBoxHallDataFilePath.Name = "TextBoxHallDataFilePath";
+            this.TextBoxHallDataFilePath.ReadOnly = true;
+            this.TextBoxHallDataFilePath.Size = new System.Drawing.Size(539, 23);
+            this.TextBoxHallDataFilePath.TabIndex = 22;
+            this.TextBoxHallDataFilePath.TextChanged += new System.EventHandler(this.TextBoxHallDataFilePath_TextChanged);
             // 
             // label1
             // 
@@ -203,23 +203,23 @@
             this.DataGridViewUnitData.AllowUserToResizeRows = false;
             this.DataGridViewUnitData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
             this.DataGridViewUnitData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewUnitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewUnitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridViewUnitData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(60)))), ((int)(((byte)(83)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewUnitData.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(60)))), ((int)(((byte)(83)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewUnitData.DefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewUnitData.GridColor = System.Drawing.Color.DimGray;
             this.DataGridViewUnitData.Location = new System.Drawing.Point(12, 123);
             this.DataGridViewUnitData.Name = "DataGridViewUnitData";
@@ -233,48 +233,48 @@
             this.DataGridViewUnitData.SelectionChanged += new System.EventHandler(this.DataGridViewUnitData_SelectionChanged);
             this.DataGridViewUnitData.Sorted += new System.EventHandler(this.DataGridViewUnitData_Sorted);
             // 
-            // ButtonOpenGroup
+            // ButtonOpenUnitDataGroup
             // 
-            this.ButtonOpenGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.ButtonOpenGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonOpenGroup.Enabled = false;
-            this.ButtonOpenGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ButtonOpenGroup.ForeColor = System.Drawing.Color.LimeGreen;
-            this.ButtonOpenGroup.Location = new System.Drawing.Point(582, 98);
-            this.ButtonOpenGroup.Name = "ButtonOpenGroup";
-            this.ButtonOpenGroup.Size = new System.Drawing.Size(22, 22);
-            this.ButtonOpenGroup.TabIndex = 39;
-            this.ButtonOpenGroup.Text = "▲";
-            this.ButtonOpenGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonOpenGroup.UseVisualStyleBackColor = false;
-            this.ButtonOpenGroup.Click += new System.EventHandler(this.ButtonOpenGroup_Click);
+            this.ButtonOpenUnitDataGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.ButtonOpenUnitDataGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonOpenUnitDataGroup.Enabled = false;
+            this.ButtonOpenUnitDataGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonOpenUnitDataGroup.ForeColor = System.Drawing.Color.LimeGreen;
+            this.ButtonOpenUnitDataGroup.Location = new System.Drawing.Point(582, 98);
+            this.ButtonOpenUnitDataGroup.Name = "ButtonOpenUnitDataGroup";
+            this.ButtonOpenUnitDataGroup.Size = new System.Drawing.Size(22, 22);
+            this.ButtonOpenUnitDataGroup.TabIndex = 39;
+            this.ButtonOpenUnitDataGroup.Text = "▲";
+            this.ButtonOpenUnitDataGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonOpenUnitDataGroup.UseVisualStyleBackColor = false;
+            this.ButtonOpenUnitDataGroup.Click += new System.EventHandler(this.ButtonOpenUnitDataGroup_Click);
             // 
-            // ButtonCloseGroup
+            // ButtonCloseUnitDataGroup
             // 
-            this.ButtonCloseGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.ButtonCloseGroup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonCloseGroup.Enabled = false;
-            this.ButtonCloseGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ButtonCloseGroup.ForeColor = System.Drawing.Color.IndianRed;
-            this.ButtonCloseGroup.Location = new System.Drawing.Point(610, 98);
-            this.ButtonCloseGroup.Name = "ButtonCloseGroup";
-            this.ButtonCloseGroup.Size = new System.Drawing.Size(22, 22);
-            this.ButtonCloseGroup.TabIndex = 40;
-            this.ButtonCloseGroup.Text = "▼";
-            this.ButtonCloseGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonCloseGroup.UseVisualStyleBackColor = false;
-            this.ButtonCloseGroup.Click += new System.EventHandler(this.ButtonCloseGroup_Click);
+            this.ButtonCloseUnitDataGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.ButtonCloseUnitDataGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonCloseUnitDataGroup.Enabled = false;
+            this.ButtonCloseUnitDataGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonCloseUnitDataGroup.ForeColor = System.Drawing.Color.IndianRed;
+            this.ButtonCloseUnitDataGroup.Location = new System.Drawing.Point(610, 98);
+            this.ButtonCloseUnitDataGroup.Name = "ButtonCloseUnitDataGroup";
+            this.ButtonCloseUnitDataGroup.Size = new System.Drawing.Size(22, 22);
+            this.ButtonCloseUnitDataGroup.TabIndex = 40;
+            this.ButtonCloseUnitDataGroup.Text = "▼";
+            this.ButtonCloseUnitDataGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonCloseUnitDataGroup.UseVisualStyleBackColor = false;
+            this.ButtonCloseUnitDataGroup.Click += new System.EventHandler(this.ButtonCloseUnitDataGroup_Click);
             // 
             // ChartDailyData
             // 
             this.ChartDailyData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
-            chartArea1.Name = "ChartArea1";
-            this.ChartDailyData.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.ChartDailyData.ChartAreas.Add(chartArea2);
             this.ChartDailyData.Location = new System.Drawing.Point(6, 458);
             this.ChartDailyData.Name = "ChartDailyData";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Series1";
-            this.ChartDailyData.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            this.ChartDailyData.Series.Add(series2);
             this.ChartDailyData.Size = new System.Drawing.Size(632, 234);
             this.ChartDailyData.TabIndex = 49;
             this.ChartDailyData.Text = "ChartDailyData";
@@ -488,10 +488,10 @@
             this.Controls.Add(this.ButtonSetting);
             this.Controls.Add(this.groupBoxColor1);
             this.Controls.Add(this.ChartDailyData);
-            this.Controls.Add(this.ButtonCloseGroup);
-            this.Controls.Add(this.ButtonOpenGroup);
+            this.Controls.Add(this.ButtonCloseUnitDataGroup);
+            this.Controls.Add(this.ButtonOpenUnitDataGroup);
             this.Controls.Add(this.ButtonAnalysData);
-            this.Controls.Add(this.ButtonReadExcel);
+            this.Controls.Add(this.ButtonInportHallData);
             this.Controls.Add(this.DataGridViewUnitData);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ComboBoxModelName);
@@ -499,7 +499,7 @@
             this.Controls.Add(this.TextBoxStoreName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ButtonReference);
-            this.Controls.Add(this.TextBoxReadExcelPath);
+            this.Controls.Add(this.TextBoxHallDataFilePath);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
             this.MaximumSize = new System.Drawing.Size(835, 735);
@@ -518,18 +518,18 @@
         #endregion
 
         private System.Windows.Forms.Button ButtonAnalysData;
-        private System.Windows.Forms.Button ButtonReadExcel;
+        private System.Windows.Forms.Button ButtonInportHallData;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox ComboBoxModelName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TextBoxStoreName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ButtonReference;
-        private System.Windows.Forms.TextBox TextBoxReadExcelPath;
+        private System.Windows.Forms.TextBox TextBoxHallDataFilePath;
         private System.Windows.Forms.Label label1;
         protected System.Windows.Forms.DataGridView DataGridViewUnitData;
-        private System.Windows.Forms.Button ButtonOpenGroup;
-        private System.Windows.Forms.Button ButtonCloseGroup;
+        private System.Windows.Forms.Button ButtonOpenUnitDataGroup;
+        private System.Windows.Forms.Button ButtonCloseUnitDataGroup;
         private System.Windows.Forms.DataVisualization.Charting.Chart ChartDailyData;
         private Views.GroupBoxColor groupBoxColor1;
         private System.Windows.Forms.TextBox TextBoxProbVarHitProb;

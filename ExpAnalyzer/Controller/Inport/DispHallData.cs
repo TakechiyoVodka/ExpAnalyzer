@@ -32,12 +32,12 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// 機種データをコンボボックスへ表示
         /// </summary>
-        public void DisplayModelDataInComboBox(ComboBox ComboBoxModelName, ClassHallData HallData)
+        public void DisplayModelDataInComboBox(ComboBox ComboBoxModelName)
         {
             //コンボボックス初期化
             ComboBoxModelName.Items.Clear();
 
-            foreach (ClassModelData ModelData in HallData.ModelDataList)
+            foreach (ClassModelData ModelData in FormMain.HallData.ModelDataList)
             {
                 ComboBoxModelName.Items.Add(ModelData.ModelName);
             }
@@ -53,11 +53,10 @@ namespace ExpAnalyzer.Controller.Inport
             DataGridView DataGridViewUnitData,
             Button ButtonOpenGroup,
             Button ButtonCloseGroup,
-            ClassHallData HallData,
             string SelectedModelName)
         {
             //DataGridViewへ表示する台データの計算
-            List<ClassDispUnitData> DispUnitDataList = CalcDisplayUnitData(HallData, SelectedModelName);
+            List<ClassDispUnitData> DispUnitDataList = CalcDisplayUnitData(SelectedModelName);
 
             //DataTable作成
             DataTable dt = new DataTable();
@@ -118,11 +117,11 @@ namespace ExpAnalyzer.Controller.Inport
         /// <summary>
         /// DataGridViewへ表示する台データの計算
         /// </summary>
-        private List<ClassDispUnitData> CalcDisplayUnitData(ClassHallData HallData, string SelectedModelName)
+        private List<ClassDispUnitData> CalcDisplayUnitData(string SelectedModelName)
         {
             List<ClassDispUnitData> DispUnitDataList = new List<ClassDispUnitData>();
 
-            foreach (ClassModelData ModelData in HallData.ModelDataList)
+            foreach (ClassModelData ModelData in FormMain.HallData.ModelDataList)
             {
                 //コンボボックスで選択中の機種から台データ取得
                 if (ModelData.ModelName == SelectedModelName)

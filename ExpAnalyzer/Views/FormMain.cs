@@ -91,7 +91,7 @@ namespace ExpAnalyzer
                     CommonVariableDefine = new ClassCommonVariableDefine();
 
                     CommonVariableDefine.HallDataFilePath = Ofd.FileName;
-                    TextBoxReadExcelPath.Text = Ofd.FileName;
+                    TextBoxHallDataFilePath.Text = Ofd.FileName;
                 }
                 return;
             }
@@ -103,9 +103,9 @@ namespace ExpAnalyzer
         }
 
         /// <summary>
-        /// Excelデータ読み込みボタンクリックイベント
+        /// ホールデータ読込みボタンクリックイベント
         /// </summary>
-        private void ButtonReadExcel_Click(object sender, EventArgs e)
+        private void ButtonInportHallData_Click(object sender, EventArgs e)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace ExpAnalyzer
                     TextBoxStoreName.Text = HallData.HallName;
 
                     //機種データをコンボボックスへ表示
-                    DispHallData.DisplayModelDataInComboBox(ComboBoxModelName, HallData);
+                    DispHallData.DisplayModelDataInComboBox(ComboBoxModelName);
 
                     //テキストボックスへ機種スペック情報を表示
                     DispModelDetailsInfo.DispModelDetailsInfoOnTextBox(this.TextBoxFirstHitProb,
@@ -133,7 +133,7 @@ namespace ExpAnalyzer
 
                     //台データをDataGridViewへ表示
                     DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
-                        this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
+                        this.DataGridViewUnitData, this.ButtonOpenUnitDataGroup, this.ButtonCloseUnitDataGroup, ComboBoxModelName.SelectedItem.ToString());
 
                     //選択機種の先頭日の履歴データをグラフへ表示
                     DataGridViewUnitData.Rows[1].Selected = true;
@@ -141,11 +141,11 @@ namespace ExpAnalyzer
                     if (DataGridViewUnitDataGrouper != null)
                     {
                         //Excelデータ読み込みボタン無効化
-                        ButtonReadExcel.Enabled = false;
+                        ButtonInportHallData.Enabled = false;
 
                         //DataGridView操作ボタン有効化
-                        ButtonOpenGroup.Enabled = true;
-                        ButtonCloseGroup.Enabled = true;
+                        ButtonOpenUnitDataGroup.Enabled = true;
+                        ButtonCloseUnitDataGroup.Enabled = true;
                     }
                 }
                 else
@@ -162,16 +162,16 @@ namespace ExpAnalyzer
         }
 
         /// <summary>
-        /// テキストボックス(読み込みExcelデータファイル)テキスト変更イベント
+        /// テキストボックス(ホールデータファイル)テキスト変更イベント
         /// </summary>
-        private void TextBoxReadExcelPath_TextChanged(object sender, EventArgs e)
+        private void TextBoxHallDataFilePath_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (TextBoxReadExcelPath.Text != null && TextBoxReadExcelPath.Text != "")
+                if (TextBoxHallDataFilePath.Text != null && TextBoxHallDataFilePath.Text != "")
                 {
                     //Excelデータ読み込みボタン有効化
-                    ButtonReadExcel.Enabled = true;
+                    ButtonInportHallData.Enabled = true;
                 }
                 return;
             }
@@ -203,7 +203,7 @@ namespace ExpAnalyzer
 
                 //台データをDataGridViewへ表示
                 DataGridViewUnitDataGrouper = DispHallData.DisplayUnitDataInDataGridView(
-                    this.DataGridViewUnitData, this.ButtonOpenGroup, this.ButtonCloseGroup, HallData, ComboBoxModelName.SelectedItem.ToString());
+                    this.DataGridViewUnitData, this.ButtonOpenUnitDataGroup, this.ButtonCloseUnitDataGroup, ComboBoxModelName.SelectedItem.ToString());
 
                 //選択機種の先頭日の履歴データをグラフへ表示
                 DataGridViewUnitData.Rows[1].Selected = true;
@@ -218,9 +218,9 @@ namespace ExpAnalyzer
 
         #region DataGridViewイベント
         /// <summary>
-        /// DataGridViewグループ開くボタンクリックイベント
+        /// 台データグループ開くボタンクリックイベント
         /// </summary>
-        private void ButtonOpenGroup_Click(object sender, EventArgs e)
+        private void ButtonOpenUnitDataGroup_Click(object sender, EventArgs e)
         {
             try
             {
@@ -240,9 +240,9 @@ namespace ExpAnalyzer
         }
 
         /// <summary>
-        /// DataGridViewグループ閉じるボタンクリックイベント
+        /// 台データグループ閉じるボタンクリックイベント
         /// </summary>
-        private void ButtonCloseGroup_Click(object sender, EventArgs e)
+        private void ButtonCloseUnitDataGroup_Click(object sender, EventArgs e)
         {
             try
             {
