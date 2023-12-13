@@ -33,33 +33,25 @@ namespace ExpAnalyzer.Controller.Inport
                 if (ModelSpecData.ModelName == modelName)
                 {
                     //初当り確率
-                    TextBoxFirstHitProb.Text
-                        = ModelSpecData.FirstHitProb != -1 ? String.Concat("1/", Convert.ToString(ModelSpecData.FirstHitProb)) : "-";
+                    TextBoxFirstHitProb.Text = ModelSpecData.FirstHitProb != -1 ? String.Concat("1/", Convert.ToString(ModelSpecData.FirstHitProb)) : "-";
 
                     //確変当り確率
-                    TextBoxProbVarHitProb.Text
-                        = ModelSpecData.ProbVarHitProb != -1 ? String.Concat("1/", Convert.ToString(ModelSpecData.ProbVarHitProb)) : "-";
+                    TextBoxProbVarHitProb.Text = ModelSpecData.ProbVarHitProb != -1 ? String.Concat("1/", Convert.ToString(ModelSpecData.ProbVarHitProb)) : "-";
 
                     //確変突入率
-                    TextBoxProbVarHitRashRate.Text
-                        = ModelSpecData.ProbVarHitRashRate != -1 ? String.Concat(Convert.ToString(ModelSpecData.ProbVarHitRashRate), "%") : "-";
+                    TextBoxProbVarHitRashRate.Text = ModelSpecData.ProbVarHitRashRate != -1 ? String.Concat(Convert.ToString(ModelSpecData.ProbVarHitRashRate), "%") : "-";
 
                     //確変継続率
-                    TextBoxProbVarHitPersisRate.Text
-                        = ModelSpecData.ProbVarHitPersisRate != -1 ? String.Concat(Convert.ToString(ModelSpecData.ProbVarHitPersisRate), "%") : "-";
+                    TextBoxProbVarHitPersisRate.Text = ModelSpecData.ProbVarHitPersisRate != -1 ? String.Concat(Convert.ToString(ModelSpecData.ProbVarHitPersisRate), "%") : "-";
 
                     //ST
-                    TextBoxSpecialTime.Text
-                        = ModelSpecData.SpecialTime != -1 ? String.Concat(Convert.ToString(ModelSpecData.SpecialTime), "回") : "-";
+                    TextBoxSpecialTime.Text = ModelSpecData.SpecialTime != -1 ? String.Concat(Convert.ToString(ModelSpecData.SpecialTime), "回") : "-";
 
                     //時短回数
-                    TextBoxSavingTime.Text
-                        = ModelSpecData.SavingTime != -1 ? String.Concat(Convert.ToString(ModelSpecData.SavingTime), "回") : "-";
+                    TextBoxSavingTime.Text = ModelSpecData.SavingTime != -1 ? String.Concat(Convert.ToString(ModelSpecData.SavingTime), "回") : "-";
 
                     //CT
-                    TextBoxCTime.Text
-                        = ModelSpecData.CTime != -1 ? String.Concat(Convert.ToString(ModelSpecData.CTime), "回") : "-";
-
+                    TextBoxCTime.Text = ModelSpecData.CTime != -1 ? String.Concat(Convert.ToString(ModelSpecData.CTime), "回") : "-";
                     break;
                 }
             }
