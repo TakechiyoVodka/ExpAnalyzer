@@ -37,7 +37,7 @@ namespace ExpAnalyzer
             this.PanelInportData = new System.Windows.Forms.Panel();
             this.ChartDailyData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ButtonCloseUnitDataGroup = new System.Windows.Forms.Button();
-            this.ButtonAnalysData = new System.Windows.Forms.Button();
+            this.ButtonTest = new System.Windows.Forms.Button();
             this.ButtonInportHallData = new System.Windows.Forms.Button();
             this.groupBoxColor1 = new ExpAnalyzer.Views.GroupBoxColor();
             this.TextBoxProbVarHitProb = new System.Windows.Forms.TextBox();
@@ -87,7 +87,7 @@ namespace ExpAnalyzer
             // 
             this.PanelInportData.Controls.Add(this.ChartDailyData);
             this.PanelInportData.Controls.Add(this.ButtonCloseUnitDataGroup);
-            this.PanelInportData.Controls.Add(this.ButtonAnalysData);
+            this.PanelInportData.Controls.Add(this.ButtonTest);
             this.PanelInportData.Controls.Add(this.ButtonInportHallData);
             this.PanelInportData.Controls.Add(this.groupBoxColor1);
             this.PanelInportData.Controls.Add(this.ButtonOpenUnitDataGroup);
@@ -135,19 +135,20 @@ namespace ExpAnalyzer
             this.ButtonCloseUnitDataGroup.UseVisualStyleBackColor = false;
             this.ButtonCloseUnitDataGroup.Click += new System.EventHandler(this.ButtonCloseUnitDataGroup_Click);
             // 
-            // ButtonAnalysData
+            // ButtonTest
             // 
-            this.ButtonAnalysData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.ButtonAnalysData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonAnalysData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ButtonAnalysData.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ButtonAnalysData.ForeColor = System.Drawing.Color.White;
-            this.ButtonAnalysData.Location = new System.Drawing.Point(657, 596);
-            this.ButtonAnalysData.Name = "ButtonAnalysData";
-            this.ButtonAnalysData.Size = new System.Drawing.Size(154, 46);
-            this.ButtonAnalysData.TabIndex = 62;
-            this.ButtonAnalysData.Text = "データ解析/レポート出力";
-            this.ButtonAnalysData.UseVisualStyleBackColor = false;
+            this.ButtonTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.ButtonTest.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonTest.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ButtonTest.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ButtonTest.ForeColor = System.Drawing.Color.White;
+            this.ButtonTest.Location = new System.Drawing.Point(657, 596);
+            this.ButtonTest.Name = "ButtonTest";
+            this.ButtonTest.Size = new System.Drawing.Size(154, 46);
+            this.ButtonTest.TabIndex = 62;
+            this.ButtonTest.Text = "テスト/デバッグ";
+            this.ButtonTest.UseVisualStyleBackColor = false;
+            this.ButtonTest.Click += new System.EventHandler(this.ButtonTest_Click);
             // 
             // ButtonInportHallData
             // 
@@ -659,7 +660,7 @@ namespace ExpAnalyzer
         #endregion
         private System.Windows.Forms.DataVisualization.Charting.Chart ChartDailyData;
         private System.Windows.Forms.Button ButtonCloseUnitDataGroup;
-        private System.Windows.Forms.Button ButtonAnalysData;
+        private System.Windows.Forms.Button ButtonTest;
         private System.Windows.Forms.Button ButtonInportHallData;
         private Views.GroupBoxColor groupBoxColor1;
         private System.Windows.Forms.TextBox TextBoxProbVarHitProb;

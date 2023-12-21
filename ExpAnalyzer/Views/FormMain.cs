@@ -31,7 +31,7 @@ namespace ExpAnalyzer
         //ホールデータ
         internal static ClassHallData HallData;
         //機種スペックデータ
-        private static List<ClassModelSpecData> ModelSpecDataList;
+        internal static List<ClassModelSpecData> ModelSpecDataList;
         //DataGridViewGrouper(台データ)
         private static Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = null;
         #endregion

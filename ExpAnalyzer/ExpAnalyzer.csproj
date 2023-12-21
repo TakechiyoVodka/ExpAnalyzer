@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Calculate\FormattingHallData.cs" />
     <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
     <Compile Include="Controller\Inport\DailyDataOnChart.cs" />
     <Compile Include="Controller\Inport\ModelDataOnComboBox.cs" />
@@ -126,7 +127,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\Calculate\" />
     <Folder Include="Controller\Export\" />
     <Folder Include="Controller\GlaphMapping\" />
   </ItemGroup>

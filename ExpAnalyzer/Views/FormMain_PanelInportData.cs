@@ -1,4 +1,5 @@
-﻿using ExpAnalyzer.Controller.Common;
+﻿using ExpAnalyzer.Controller.Calculate;
+using ExpAnalyzer.Controller.Common;
 using ExpAnalyzer.Controller.GlaphMapping;
 using ExpAnalyzer.Controller.Inport;
 using ExpAnalyzer.Models;
@@ -285,6 +286,29 @@ namespace ExpAnalyzer
                         DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, modelName, unitNum, dateTime);
                     }
                 }
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// テスト/デバッグ用ボタン　→　後で削除
+        /// </summary>
+        private void ButtonTest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //デバッグ用
+                string dataSource = "マルハンアプリ";
+
+                ClassFormattingHallData FormattingHallData = new ClassFormattingHallData();
+
+                //ホールデータの整形
+                ClassHallData FormatHallData = FormattingHallData.FormattingHallData(dataSource);
                 return;
             }
             catch (Exception ex)
