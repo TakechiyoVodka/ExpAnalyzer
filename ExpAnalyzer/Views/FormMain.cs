@@ -30,6 +30,8 @@ namespace ExpAnalyzer
         private static ClassCommonVariableDefine CommonVariableDefine;
         //ホールデータ
         internal static ClassHallData HallData;
+        //ホールデータ(整形後)
+        internal static ClassHallData FormatHallData;
         //機種スペックデータ
         internal static List<ClassModelSpecData> ModelSpecDataList;
         //DataGridViewGrouper(台データ)
@@ -67,6 +69,12 @@ namespace ExpAnalyzer
                 //コンボボックス設定
                 ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
                 ComboBoxModelName.Items.Clear();
+                ComboBoxHallDataSource.DropDownStyle = ComboBoxStyle.DropDownList;
+                ComboBoxHallDataSource.Items.Clear();
+                ComboBoxHallDataSource.Items.Add("マルハンアプリ");
+                ComboBoxHallDataSource.Items.Add("データロボサイトセブン");
+                ComboBoxHallDataSource.Items.Add("台データオンライン");
+                ComboBoxHallDataSource.SelectedIndex = 0;
 
                 //デイリーデータをグラフへ表示 ※枠線のみ表示
                 DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, null, null, null);

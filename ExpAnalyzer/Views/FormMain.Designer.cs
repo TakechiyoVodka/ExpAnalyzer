@@ -35,9 +35,10 @@ namespace ExpAnalyzer
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelInportData = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ComboBoxHallDataSource = new System.Windows.Forms.ComboBox();
             this.ChartDailyData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.ButtonCloseUnitDataGroup = new System.Windows.Forms.Button();
-            this.ButtonTest = new System.Windows.Forms.Button();
             this.ButtonInportHallData = new System.Windows.Forms.Button();
             this.groupBoxColor1 = new ExpAnalyzer.Views.GroupBoxColor();
             this.TextBoxProbVarHitProb = new System.Windows.Forms.TextBox();
@@ -85,9 +86,10 @@ namespace ExpAnalyzer
             // 
             // PanelInportData
             // 
+            this.PanelInportData.Controls.Add(this.label5);
+            this.PanelInportData.Controls.Add(this.ComboBoxHallDataSource);
             this.PanelInportData.Controls.Add(this.ChartDailyData);
             this.PanelInportData.Controls.Add(this.ButtonCloseUnitDataGroup);
-            this.PanelInportData.Controls.Add(this.ButtonTest);
             this.PanelInportData.Controls.Add(this.ButtonInportHallData);
             this.PanelInportData.Controls.Add(this.groupBoxColor1);
             this.PanelInportData.Controls.Add(this.ButtonOpenUnitDataGroup);
@@ -102,15 +104,41 @@ namespace ExpAnalyzer
             this.PanelInportData.Controls.Add(this.label1);
             this.PanelInportData.Location = new System.Drawing.Point(202, 1);
             this.PanelInportData.Name = "PanelInportData";
-            this.PanelInportData.Size = new System.Drawing.Size(840, 693);
+            this.PanelInportData.Size = new System.Drawing.Size(840, 708);
             this.PanelInportData.TabIndex = 52;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(571, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 15);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "データソース";
+            // 
+            // ComboBoxHallDataSource
+            // 
+            this.ComboBoxHallDataSource.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
+            this.ComboBoxHallDataSource.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ComboBoxHallDataSource.DropDownWidth = 256;
+            this.ComboBoxHallDataSource.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ComboBoxHallDataSource.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ComboBoxHallDataSource.ForeColor = System.Drawing.Color.White;
+            this.ComboBoxHallDataSource.FormattingEnabled = true;
+            this.ComboBoxHallDataSource.Location = new System.Drawing.Point(571, 71);
+            this.ComboBoxHallDataSource.Name = "ComboBoxHallDataSource";
+            this.ComboBoxHallDataSource.Size = new System.Drawing.Size(256, 23);
+            this.ComboBoxHallDataSource.TabIndex = 67;
+            this.ComboBoxHallDataSource.SelectionChangeCommitted += new System.EventHandler(this.ComboBoxHallDataSource_SelectionChangeCommitted);
             // 
             // ChartDailyData
             // 
             this.ChartDailyData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
             chartArea1.Name = "ChartArea1";
             this.ChartDailyData.ChartAreas.Add(chartArea1);
-            this.ChartDailyData.Location = new System.Drawing.Point(15, 456);
+            this.ChartDailyData.Location = new System.Drawing.Point(15, 471);
             this.ChartDailyData.Name = "ChartDailyData";
             series1.ChartArea = "ChartArea1";
             series1.Name = "Series1";
@@ -126,7 +154,7 @@ namespace ExpAnalyzer
             this.ButtonCloseUnitDataGroup.Enabled = false;
             this.ButtonCloseUnitDataGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonCloseUnitDataGroup.ForeColor = System.Drawing.Color.IndianRed;
-            this.ButtonCloseUnitDataGroup.Location = new System.Drawing.Point(619, 96);
+            this.ButtonCloseUnitDataGroup.Location = new System.Drawing.Point(619, 111);
             this.ButtonCloseUnitDataGroup.Name = "ButtonCloseUnitDataGroup";
             this.ButtonCloseUnitDataGroup.Size = new System.Drawing.Size(22, 22);
             this.ButtonCloseUnitDataGroup.TabIndex = 64;
@@ -134,21 +162,6 @@ namespace ExpAnalyzer
             this.ButtonCloseUnitDataGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonCloseUnitDataGroup.UseVisualStyleBackColor = false;
             this.ButtonCloseUnitDataGroup.Click += new System.EventHandler(this.ButtonCloseUnitDataGroup_Click);
-            // 
-            // ButtonTest
-            // 
-            this.ButtonTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.ButtonTest.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonTest.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.ButtonTest.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ButtonTest.ForeColor = System.Drawing.Color.White;
-            this.ButtonTest.Location = new System.Drawing.Point(657, 596);
-            this.ButtonTest.Name = "ButtonTest";
-            this.ButtonTest.Size = new System.Drawing.Size(154, 46);
-            this.ButtonTest.TabIndex = 62;
-            this.ButtonTest.Text = "テスト/デバッグ";
-            this.ButtonTest.UseVisualStyleBackColor = false;
-            this.ButtonTest.Click += new System.EventHandler(this.ButtonTest_Click);
             // 
             // ButtonInportHallData
             // 
@@ -158,7 +171,7 @@ namespace ExpAnalyzer
             this.ButtonInportHallData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonInportHallData.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ButtonInportHallData.ForeColor = System.Drawing.Color.White;
-            this.ButtonInportHallData.Location = new System.Drawing.Point(657, 540);
+            this.ButtonInportHallData.Location = new System.Drawing.Point(663, 638);
             this.ButtonInportHallData.Name = "ButtonInportHallData";
             this.ButtonInportHallData.Size = new System.Drawing.Size(154, 46);
             this.ButtonInportHallData.TabIndex = 61;
@@ -185,7 +198,7 @@ namespace ExpAnalyzer
             this.groupBoxColor1.Controls.Add(this.TextBoxFirstHitProb);
             this.groupBoxColor1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBoxColor1.ForeColor = System.Drawing.Color.White;
-            this.groupBoxColor1.Location = new System.Drawing.Point(647, 103);
+            this.groupBoxColor1.Location = new System.Drawing.Point(653, 118);
             this.groupBoxColor1.Name = "groupBoxColor1";
             this.groupBoxColor1.Size = new System.Drawing.Size(174, 350);
             this.groupBoxColor1.TabIndex = 66;
@@ -360,7 +373,7 @@ namespace ExpAnalyzer
             this.ButtonOpenUnitDataGroup.Enabled = false;
             this.ButtonOpenUnitDataGroup.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonOpenUnitDataGroup.ForeColor = System.Drawing.Color.LimeGreen;
-            this.ButtonOpenUnitDataGroup.Location = new System.Drawing.Point(591, 96);
+            this.ButtonOpenUnitDataGroup.Location = new System.Drawing.Point(591, 111);
             this.ButtonOpenUnitDataGroup.Name = "ButtonOpenUnitDataGroup";
             this.ButtonOpenUnitDataGroup.Size = new System.Drawing.Size(22, 22);
             this.ButtonOpenUnitDataGroup.TabIndex = 63;
@@ -394,7 +407,7 @@ namespace ExpAnalyzer
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewUnitData.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridViewUnitData.GridColor = System.Drawing.Color.DimGray;
-            this.DataGridViewUnitData.Location = new System.Drawing.Point(21, 121);
+            this.DataGridViewUnitData.Location = new System.Drawing.Point(21, 136);
             this.DataGridViewUnitData.Name = "DataGridViewUnitData";
             this.DataGridViewUnitData.ReadOnly = true;
             this.DataGridViewUnitData.RowHeadersVisible = false;
@@ -411,7 +424,7 @@ namespace ExpAnalyzer
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(21, 103);
+            this.label4.Location = new System.Drawing.Point(21, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 15);
             this.label4.TabIndex = 59;
@@ -421,13 +434,14 @@ namespace ExpAnalyzer
             // 
             this.ComboBoxModelName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(29)))), ((int)(((byte)(41)))));
             this.ComboBoxModelName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ComboBoxModelName.DropDownWidth = 256;
             this.ComboBoxModelName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ComboBoxModelName.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ComboBoxModelName.ForeColor = System.Drawing.Color.White;
             this.ComboBoxModelName.FormattingEnabled = true;
-            this.ComboBoxModelName.Location = new System.Drawing.Point(298, 71);
+            this.ComboBoxModelName.Location = new System.Drawing.Point(296, 71);
             this.ComboBoxModelName.Name = "ComboBoxModelName";
-            this.ComboBoxModelName.Size = new System.Drawing.Size(262, 23);
+            this.ComboBoxModelName.Size = new System.Drawing.Size(256, 23);
             this.ComboBoxModelName.TabIndex = 58;
             this.ComboBoxModelName.SelectionChangeCommitted += new System.EventHandler(this.ComboBoxModelName_SelectionChangeCommitted);
             // 
@@ -436,7 +450,7 @@ namespace ExpAnalyzer
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(299, 53);
+            this.label3.Location = new System.Drawing.Point(296, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 15);
             this.label3.TabIndex = 57;
@@ -451,7 +465,7 @@ namespace ExpAnalyzer
             this.TextBoxStoreName.Location = new System.Drawing.Point(21, 71);
             this.TextBoxStoreName.Name = "TextBoxStoreName";
             this.TextBoxStoreName.ReadOnly = true;
-            this.TextBoxStoreName.Size = new System.Drawing.Size(262, 23);
+            this.TextBoxStoreName.Size = new System.Drawing.Size(256, 23);
             this.TextBoxStoreName.TabIndex = 56;
             // 
             // label2
@@ -472,7 +486,7 @@ namespace ExpAnalyzer
             this.ButtonReference.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonReference.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ButtonReference.ForeColor = System.Drawing.Color.White;
-            this.ButtonReference.Location = new System.Drawing.Point(566, 26);
+            this.ButtonReference.Location = new System.Drawing.Point(752, 26);
             this.ButtonReference.Name = "ButtonReference";
             this.ButtonReference.Size = new System.Drawing.Size(75, 23);
             this.ButtonReference.TabIndex = 54;
@@ -489,7 +503,7 @@ namespace ExpAnalyzer
             this.TextBoxHallDataFilePath.Location = new System.Drawing.Point(21, 26);
             this.TextBoxHallDataFilePath.Name = "TextBoxHallDataFilePath";
             this.TextBoxHallDataFilePath.ReadOnly = true;
-            this.TextBoxHallDataFilePath.Size = new System.Drawing.Size(539, 23);
+            this.TextBoxHallDataFilePath.Size = new System.Drawing.Size(725, 23);
             this.TextBoxHallDataFilePath.TabIndex = 53;
             this.TextBoxHallDataFilePath.TextChanged += new System.EventHandler(this.TextBoxHallDataFilePath_TextChanged);
             // 
@@ -556,7 +570,7 @@ namespace ExpAnalyzer
             this.ButtonDispUserSettingsPanel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ButtonDispUserSettingsPanel.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ButtonDispUserSettingsPanel.ForeColor = System.Drawing.Color.White;
-            this.ButtonDispUserSettingsPanel.Location = new System.Drawing.Point(1, 624);
+            this.ButtonDispUserSettingsPanel.Location = new System.Drawing.Point(1, 639);
             this.ButtonDispUserSettingsPanel.Name = "ButtonDispUserSettingsPanel";
             this.ButtonDispUserSettingsPanel.Size = new System.Drawing.Size(200, 70);
             this.ButtonDispUserSettingsPanel.TabIndex = 58;
@@ -627,7 +641,7 @@ namespace ExpAnalyzer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(20)))), ((int)(((byte)(28)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(2085, 696);
+            this.ClientSize = new System.Drawing.Size(2085, 711);
             this.Controls.Add(this.PanelUserSettings);
             this.Controls.Add(this.PanelExportReport);
             this.Controls.Add(this.PanelAnalyzeData);
@@ -637,8 +651,8 @@ namespace ExpAnalyzer
             this.Controls.Add(this.ButtonDispInportDataPanel);
             this.Controls.Add(this.PanelInportData);
             this.ForeColor = System.Drawing.Color.White;
-            this.MaximumSize = new System.Drawing.Size(2101, 735);
-            this.MinimumSize = new System.Drawing.Size(1060, 735);
+            this.MaximumSize = new System.Drawing.Size(2101, 750);
+            this.MinimumSize = new System.Drawing.Size(1060, 750);
             this.Name = "FormMain";
             this.Text = "ExpAnalyzer";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -660,7 +674,6 @@ namespace ExpAnalyzer
         #endregion
         private System.Windows.Forms.DataVisualization.Charting.Chart ChartDailyData;
         private System.Windows.Forms.Button ButtonCloseUnitDataGroup;
-        private System.Windows.Forms.Button ButtonTest;
         private System.Windows.Forms.Button ButtonInportHallData;
         private Views.GroupBoxColor groupBoxColor1;
         private System.Windows.Forms.TextBox TextBoxProbVarHitProb;
@@ -698,6 +711,8 @@ namespace ExpAnalyzer
         private System.Windows.Forms.Label label_PanelAnalyzeData;
         private System.Windows.Forms.Label label_PanelExportReport;
         private System.Windows.Forms.Label label_PanelUserSettings;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox ComboBoxHallDataSource;
     }
 }
 

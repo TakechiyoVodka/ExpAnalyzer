@@ -21,7 +21,7 @@ namespace ExpAnalyzer.Controller.Calculate
         /// <summary>
         /// ホールデータの整形
         /// </summary>
-        internal ClassHallData FormattingHallData(string dataSource)
+        internal ClassHallData FormattingHallData(string hallDataSource)
         {
             ClassHallData HallData = new ClassHallData();
             ClassHallData OriginHallData = FormMain.HallData;
@@ -70,7 +70,7 @@ namespace ExpAnalyzer.Controller.Calculate
                             ClassHistoryData HistoryData = new ClassHistoryData();
 
                             //マルハンアプリ
-                            if (dataSource == DATASOURCE_MARUHAN)
+                            if (hallDataSource == DATASOURCE_MARUHAN)
                             {
                                 switch (OriginDailyData.HistoryDataList[i].HitType)
                                 {
@@ -171,7 +171,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                 }
                             }
                             //データロボサイトセブン
-                            else if (dataSource == DATASOURCE_DATAROBO)
+                            else if (hallDataSource == DATASOURCE_DATAROBO)
                             {
                                 switch (OriginDailyData.HistoryDataList[i].HitType)
                                 {

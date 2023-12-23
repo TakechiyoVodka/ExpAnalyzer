@@ -154,15 +154,8 @@ namespace ExpAnalyzer.Controller.GlaphMapping
                                                 if (DailyData.HistoryDataList[i + 1].HitType == 2)
                                                 {
                                                     DispDailyData = new ClassDispDailyData();
-                                                    
-                                                    if (DispDailyDataList.Count == 0)
-                                                    {
-                                                        DispDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount + GetBeforeDayRemainRotateCount(UnitData, dateTime);
-                                                    }
-                                                    else
-                                                    {
-                                                        DispDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount;
-                                                    }
+
+                                                    DispDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount;
                                                     DispDailyData.HitType = 2;
                                                 }
                                                 //単発当り
@@ -170,14 +163,7 @@ namespace ExpAnalyzer.Controller.GlaphMapping
                                                 {
                                                     DispDailyData = new ClassDispDailyData();
 
-                                                    if (DispDailyDataList.Count == 0)
-                                                    {
-                                                        DispDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount + GetBeforeDayRemainRotateCount(UnitData, dateTime);
-                                                    }
-                                                    else
-                                                    {
-                                                        DispDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount;
-                                                    }
+                                                    DispDailyData.RotateCount = DailyData.HistoryDataList[i].RotateCount;
                                                     DispDailyData.HitType = 1;
                                                     DispDailyData.ProbVarHitCount = 0;
                                                     DispDailyDataList.Add(DispDailyData);
@@ -222,46 +208,6 @@ namespace ExpAnalyzer.Controller.GlaphMapping
                 }
             }
             return DispDailyDataList;
-        }
-
-        /// <summary>
-        /// 前日の残り回転数を取得
-        /// </summary>
-        private static int GetBeforeDayRemainRotateCount(ClassUnitData UnitData, string dateTime)
-        {
-            int remainRotateCount = 0;
-
-            foreach (ClassDailyData DailyData in UnitData.DailyDataList)
-            {
-                if (DailyData.DateTime.ToString("yyyy/MM/dd") != dateTime)
-                {
-                    foreach (ClassHistoryData HistoryData in DailyData.HistoryDataList)
-                    {
-                        if (HistoryData.HitType == 0)
-                        {
-                            //残り回転数
-                            remainRotateCount += HistoryData.RotateCount;
-                            break;
-                        }
-                        else if (HistoryData.HitType == -1)
-                        {
-                            //定休日または故障台
-                            break;
-                        }
-                        else
-                        {
-                            //大当り時に残り回転数リセット
-                            remainRotateCount = 0;
-                            continue;
-                        }
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-            return remainRotateCount;
         }
     }
 }

@@ -71,6 +71,7 @@ namespace ExpAnalyzer
                     ClassDailyDataOnChart DailyDataOnChart = new ClassDailyDataOnChart();
                     ClassModelSpecDataOnTextBox ModelSpecDataOnTextBox = new ClassModelSpecDataOnTextBox();
                     ClassModelDataOnComboBox ModelDataOnComboBox = new ClassModelDataOnComboBox();
+                    ClassFormattingHallData FormattingHallData = new ClassFormattingHallData();
 
                     //Excelからホールデータを読込み
                     HallData = InportHallDataFile.InportHallDataFromExcel(CommonVariableDefine.HallDataFilePath);
@@ -81,6 +82,11 @@ namespace ExpAnalyzer
                     //機種データをコンボボックスへ表示
                     ModelDataOnComboBox.DispModelDataOnComboBox(ComboBoxModelName);
 
+                    if (DataGridViewUnitDataGrouper != null)
+                    {
+                        //DataGridViewグループのリソース解放
+                        DataGridViewUnitDataGrouper.Dispose();
+                    }
                     //テキストボックスへ機種スペック情報を表示
                     ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(this.TextBoxFirstHitProb,
                         this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
@@ -103,6 +109,8 @@ namespace ExpAnalyzer
                         ButtonOpenUnitDataGroup.Enabled = true;
                         ButtonCloseUnitDataGroup.Enabled = true;
                     }
+                    //ホールデータの整形
+                    FormatHallData = FormattingHallData.FormattingHallData(ComboBoxHallDataSource.SelectedItem.ToString());
                 }
                 else
                 {
@@ -139,7 +147,7 @@ namespace ExpAnalyzer
         }
 
         /// <summary>
-        /// コンボボックス選択アイテム変更イベント
+        /// コンボボックス(機種名)選択アイテム変更イベント
         /// </summary>
         private void ComboBoxModelName_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -163,6 +171,24 @@ namespace ExpAnalyzer
 
                 //選択機種の先頭日の履歴データをグラフへ表示
                 DataGridViewUnitData.Rows[1].Selected = true;
+                return;
+            }
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// コンボボックス(データソース)選択アイテム変更イベント
+        /// </summary>
+        private void ComboBoxHallDataSource_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                //Excelデータ読み込みボタン有効化
+                ButtonInportHallData.Enabled = true;
                 return;
             }
             catch (Exception ex)
@@ -286,29 +312,6 @@ namespace ExpAnalyzer
                         DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, modelName, unitNum, dateTime);
                     }
                 }
-                return;
-            }
-            catch (Exception ex)
-            {
-                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
-                return;
-            }
-        }
-
-        /// <summary>
-        /// テスト/デバッグ用ボタン　→　後で削除
-        /// </summary>
-        private void ButtonTest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //デバッグ用
-                string dataSource = "マルハンアプリ";
-
-                ClassFormattingHallData FormattingHallData = new ClassFormattingHallData();
-
-                //ホールデータの整形
-                ClassHallData FormatHallData = FormattingHallData.FormattingHallData(dataSource);
                 return;
             }
             catch (Exception ex)
