@@ -89,19 +89,22 @@ namespace ExpAnalyzer.Controller.Calculate
                                         {
                                             if (OriginDailyData.HistoryDataList[i].RotateCount >= STime)
                                             {
-                                                //残り回転数がST回転数以上の場合は減算
+                                                //残り回転数からST回転数を減算
                                                 remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
-                                            }
-                                            else if (OriginDailyData.HistoryDataList[i].RotateCount >= STime - 4)
-                                            {
-                                                //残り回転数がST回転数以上の場合は減算　※残保留1～4回転分は許容
-                                                remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i].RotateCount;
                                             }
                                             else
                                             {
-                                                //閉店時に確変が終了しなかった場合(強制退店時) → RAMクリア
+                                                //残り回転数を0に設定
+                                                remainRotateCount = 0;
+
+                                                //閉店時に確変が終了しなかった場合(強制退店時)
+                                                if (OriginDailyData.HistoryDataList[i].RotateCount < STime - 4)
+                                                {
+                                                    //RAMクリア警告フラグON
+                                                }
                                             }
                                         }
+                                        //初当り後または初当りしなかった場合
                                         else
                                         {
                                             remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount;
@@ -123,7 +126,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                             //確変終了後が初当りの場合
                                             if (i > 0 && OriginDailyData.HistoryDataList[i - 1].HitType == 2)
                                             {
-                                                if (OriginDailyData.HistoryDataList[i].RotateCount >= STime)
+                                                if (OriginDailyData.HistoryDataList[i].RotateCount > STime)
                                                 {
                                                     //確変終了後の初当り回転数からST回転数を減算
                                                     HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
@@ -131,7 +134,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                                 }
                                                 else
                                                 {
-                                                    //確変終了後の初当り回転数がST回転数に満たない場合は回転数を1とする
+                                                    //確変終了後の初当り回転数を1に設定
                                                     HistoryData.RotateCount = 1;
                                                     HistoryData.HitType = 1;
                                                 }
@@ -187,17 +190,19 @@ namespace ExpAnalyzer.Controller.Calculate
                                         {
                                             if (OriginDailyData.HistoryDataList[i].RotateCount >= STime)
                                             {
-                                                //残り回転数がST回転数以上の場合は減算
+                                                //残り回転数からST回転数を減算
                                                 remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
-                                            }
-                                            else if (OriginDailyData.HistoryDataList[i].RotateCount >= STime - 4)
-                                            {
-                                                //残り回転数がST回転数以上の場合は減算　※残保留1～4回転分は許容
-                                                remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i].RotateCount;
                                             }
                                             else
                                             {
-                                                //閉店時に確変が終了しなかった場合(強制退店時) → RAMクリア
+                                                //残り回転数を0に設定
+                                                remainRotateCount = 0;
+
+                                                //閉店時に確変が終了しなかった場合(強制退店時)
+                                                if (OriginDailyData.HistoryDataList[i].RotateCount < STime - 4)
+                                                {
+                                                    //RAMクリア警告フラグON
+                                                }
                                             }
                                         }
                                         //Cタイム終了後が残り回転数の場合
@@ -207,21 +212,26 @@ namespace ExpAnalyzer.Controller.Calculate
                                             {
                                                 if (OriginDailyData.HistoryDataList[i - 1].RotateCount >= STime)
                                                 {
-                                                    //残り回転数がCT回転数以上の場合は減算  ※ST回転数を減算
+                                                    //残り回転数からST回転数を減算
                                                     remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
                                                 }
                                                 else
                                                 {
-                                                    //残り回転数がCT回転数以上の場合は減算
+                                                    //初当り回転数からCタイム突入時の回転数を減算
                                                     remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i - 1].RotateCount;
                                                 }
                                             }
                                             else
                                             {
-                                                if (OriginDailyData.HistoryDataList[i].RotateCount > STime)
+                                                if (OriginDailyData.HistoryDataList[i].RotateCount >= STime)
                                                 {
-                                                    //残り回転数がCT回転数以上の場合は減算
+                                                    //残り回転数からST回転数を減算
                                                     remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
+                                                }
+                                                else
+                                                {
+                                                    //残り回転数を0に設定
+                                                    remainRotateCount = 0;
                                                 }
                                             }
                                         }
@@ -246,7 +256,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                             //確変終了後が初当りの場合
                                             if (i > 0 && OriginDailyData.HistoryDataList[i - 1].HitType == 2)
                                             {
-                                                if (OriginDailyData.HistoryDataList[i].RotateCount >= STime)
+                                                if (OriginDailyData.HistoryDataList[i].RotateCount > STime)
                                                 {
                                                     //確変終了後の初当り回転数からST回転数を減算
                                                     HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
@@ -254,7 +264,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                                 }
                                                 else
                                                 {
-                                                    //確変終了後の初当り回転数がST回転数に満たない場合は回転数を1とする
+                                                    //確変終了後の初当り回転数を1に設定
                                                     HistoryData.RotateCount = 1;
                                                     HistoryData.HitType = 1;
                                                 }
@@ -264,36 +274,34 @@ namespace ExpAnalyzer.Controller.Calculate
                                             {
                                                 if (OriginDailyData.HistoryDataList[i].RotateCount > OriginDailyData.HistoryDataList[i - 1].RotateCount)
                                                 {
-                                                    int remainFilstHitRotateCount = OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i - 1].RotateCount;
-
                                                     //Cタイム中に初当りした場合
-                                                    if (remainFilstHitRotateCount <= CTime)
+                                                    if (OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i - 1].RotateCount <= CTime)
                                                     {
                                                         if (OriginDailyData.HistoryDataList[i - 1].RotateCount > STime)
                                                         {
-                                                            //初当り回転数がST回転数以上の場合は減算  ※ST回転数を減算
+                                                            //初当り回転数からST回転数を減算
                                                             HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
                                                             HistoryData.HitType = 3;
                                                         }
                                                         else
                                                         {
-                                                            //初当り回転数がST回転数以上の場合は減算  ※ST回転数を減算
+                                                            //初当り回転数からCタイム突入時の回転数を減算
                                                             HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i - 1].RotateCount;
                                                             HistoryData.HitType = 3;
                                                         }
                                                     }
-                                                    //Cタイム外で初当りした場合
+                                                    //Cタイム終了後に初当りした場合
                                                     else
                                                     {
                                                         if (OriginDailyData.HistoryDataList[i - 1].RotateCount > STime)
                                                         {
-                                                            //初当り回転数がST回転数以上の場合は減算  ※ST回転数を減算
+                                                            //初当り回転数からST回転数を減算
                                                             HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
                                                             HistoryData.HitType = 1;
                                                         }
                                                         else
                                                         {
-                                                            //初当り回転数がST回転数以上の場合は減算  ※ST回転数を減算
+                                                            //初当り回転数からCタイム突入時の回転数を減算
                                                             HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - OriginDailyData.HistoryDataList[i - 1].RotateCount;
                                                             HistoryData.HitType = 1;
                                                         }
@@ -301,16 +309,16 @@ namespace ExpAnalyzer.Controller.Calculate
                                                 }
                                                 else
                                                 {
-                                                    //例外処理  ※Cタイム終了後の初当りとする
+                                                    //例外処理  ※確変終了後であるため初当り回転数からST回転数を減算
                                                     if (OriginDailyData.HistoryDataList[i].RotateCount > STime)
                                                     {
-                                                        //初当り回転数がST回転数以上の場合は減算
+                                                        //初当り回転数からST回転数を減算
                                                         HistoryData.RotateCount = OriginDailyData.HistoryDataList[i].RotateCount - STime;
                                                         HistoryData.HitType = 1;
                                                     }
                                                     else
                                                     {
-                                                        //初当り回転数がST回転数に満たない場合は回転数を1とする
+                                                        //初当り回転数を1に設定
                                                         HistoryData.RotateCount = 1;
                                                         HistoryData.HitType = 1;
                                                     }
