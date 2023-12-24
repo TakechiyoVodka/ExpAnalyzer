@@ -107,7 +107,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                         //初当り後または初当りしなかった場合
                                         else
                                         {
-                                            remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount;
+                                            remainRotateCount += OriginDailyData.HistoryDataList[i].RotateCount;
                                         }
                                         break;
 
@@ -237,7 +237,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                         }
                                         else
                                         {
-                                            remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount;
+                                            remainRotateCount += OriginDailyData.HistoryDataList[i].RotateCount;
                                         }
                                         break;
 
@@ -360,7 +360,7 @@ namespace ExpAnalyzer.Controller.Calculate
                                     //残り回転数
                                     case 0:
 
-                                        remainRotateCount = OriginDailyData.HistoryDataList[i].RotateCount;
+                                        remainRotateCount += OriginDailyData.HistoryDataList[i].RotateCount;
                                         break;
 
                                     //初当り

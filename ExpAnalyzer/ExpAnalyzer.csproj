@@ -58,8 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Calculate\CalcFirstHitCompProb.cs" />
     <Compile Include="Controller\Calculate\FormattingHallData.cs" />
     <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
+    <Compile Include="Controller\GlaphMapping\FirstHitCompProbOnChart.cs" />
     <Compile Include="Controller\Inport\DailyDataOnChart.cs" />
     <Compile Include="Controller\Inport\ModelDataOnComboBox.cs" />
     <Compile Include="Controller\Inport\UnitDataOnDataGridView.cs" />
@@ -128,7 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controller\Export\" />
-    <Folder Include="Controller\GlaphMapping\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EPPlus">

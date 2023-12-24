@@ -187,8 +187,11 @@ namespace ExpAnalyzer
         {
             try
             {
-                //Excelデータ読み込みボタン有効化
-                ButtonInportHallData.Enabled = true;
+                if (TextBoxHallDataFilePath.Text != null && TextBoxHallDataFilePath.Text != "")
+                {
+                    //Excelデータ読み込みボタン有効化
+                    ButtonInportHallData.Enabled = true;
+                }
                 return;
             }
             catch (Exception ex)
