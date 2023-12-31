@@ -109,16 +109,49 @@ namespace ExpAnalyzer
         /// </summary>
         private void ButtonDispAnalyzeDataPanel_Click(object sender, EventArgs e)
         {
-            //パネルスタック後削除
+            try
             {
-                //データ分析パネルのみ表示
-                this.PanelInportData.Visible = false;
-                this.PanelAnalyzeData.Visible = true;
-                this.PanelExportReport.Visible = false;
-                this.PanelUserSettings.Visible = false;
+                //パネルスタック後削除
+                {
+                    //データ分析パネルのみ表示
+                    this.PanelInportData.Visible = false;
+                    this.PanelAnalyzeData.Visible = true;
+                    this.PanelExportReport.Visible = false;
+                    this.PanelUserSettings.Visible = false;
+                }
+                //パネルを最前面に移動
+                this.PanelAnalyzeData.BringToFront();
+
+                if (ComboBoxDispModelName.Items.Count == 0)
+                {
+                    ClassFirstHitCompProbOnChart FirstHitCompProbOnChart = new ClassFirstHitCompProbOnChart();
+
+                    foreach (ClassModelData ModelData in FormatHallData.ModelDataList)
+                    {
+                        ComboBoxDispModelName.Items.Add(ModelData.ModelName);
+
+                        if (ComboBoxDispUnitNum.Items.Count == 0)
+                        {
+                            foreach (ClassUnitData UnitData in ModelData.UnitDataList)
+                            {
+                                ComboBoxDispUnitNum.Items.Add(UnitData.UnitNum);
+                            }
+                        }
+                    }
+                    ComboBoxDispModelName.Enabled = true;
+                    ComboBoxDispUnitNum.Enabled = true;
+                    ComboBoxDispModelName.SelectedIndex = 0;
+                    ComboBoxDispUnitNum.SelectedIndex = 0;
+
+                    //初当り合成確率をグラフへ表示
+                    FirstHitCompProbOnChart.FirstHitCompProbOnChart(this.ChartFirstHitCompProb, ComboBoxDispModelName.SelectedItem.ToString(), ComboBoxDispUnitNum.SelectedItem.ToString());
+                }
             }
-            //パネルを最前面に移動
-            this.PanelAnalyzeData.BringToFront();
+            catch (Exception ex)
+            {
+                WinModuleLibrary.ErrorModule.ShowErrorLog(ex);
+                return;
+            }
         }
 
         /// <summary>

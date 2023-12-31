@@ -111,6 +111,11 @@ namespace ExpAnalyzer
                     }
                     //ホールデータの整形
                     FormatHallData = FormattingHallData.FormattingHallData(ComboBoxHallDataSource.SelectedItem.ToString());
+
+                    if (FormatHallData != null)
+                    {
+                        ButtonDispAnalyzeDataPanel.Enabled = true;
+                    }
                 }
                 else
                 {
@@ -283,8 +288,7 @@ namespace ExpAnalyzer
 
         /// <summary>
         /// DataGridView選択セル変更イベント
-        /// </summary
-        /// 
+        /// </summary>
         private void DataGridViewUnitData_SelectionChanged(object sender, EventArgs e)
         {
             try

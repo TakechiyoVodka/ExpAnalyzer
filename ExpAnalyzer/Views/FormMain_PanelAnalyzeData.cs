@@ -22,14 +22,38 @@ namespace ExpAnalyzer
     public partial class FormMain : Form
     {
         /// <summary>
-        /// テストボタンクリックイベント(デバッグ用) → 後で消す
+        /// コンボボックス(グラフ表示機種名)選択アイテム変更イベント
         /// </summary>
-        private void ButtonTest_Click(object sender, EventArgs e)
+        private void ComboBoxDispModelName_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            ClassFirstHitCompProbOnChart FirstHitCompProbOnChart = new ClassFirstHitCompProbOnChart();
+            ComboBoxDispUnitNum.Items.Clear();
+
+            foreach (ClassModelData ModelData in FormatHallData.ModelDataList)
+            {
+                if (ModelData.ModelName == ComboBoxDispModelName.SelectedItem.ToString())
+                {
+                    foreach (ClassUnitData UnitData in ModelData.UnitDataList)
+                    {
+                        ComboBoxDispUnitNum.Items.Add(UnitData.UnitNum);
+                    }
+                }
+            }
+            ComboBoxDispUnitNum.SelectedIndex = 0;
+
+            //初当り合成確率をグラフへ表示
+            FirstHitCompProbOnChart.FirstHitCompProbOnChart(this.ChartFirstHitCompProb, ComboBoxDispModelName.SelectedItem.ToString(), ComboBoxDispUnitNum.SelectedItem.ToString());
+        }
+
+        /// <summary>
+        /// コンボボックス(グラフ表示台番号)選択アイテム変更イベント
+        /// </summary>
+        private void ComboBoxDispUnitNum_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ClassFirstHitCompProbOnChart FirstHitCompProbOnChart = new ClassFirstHitCompProbOnChart();
 
             //初当り合成確率をグラフへ表示
-            FirstHitCompProbOnChart.FirstHitCompProbOnChart(this.ChartFirstHitCompProb, "ソードアート・オンライン", "0246");
+            FirstHitCompProbOnChart.FirstHitCompProbOnChart(this.ChartFirstHitCompProb, ComboBoxDispModelName.SelectedItem.ToString(), ComboBoxDispUnitNum.SelectedItem.ToString());
         }
     }
 }

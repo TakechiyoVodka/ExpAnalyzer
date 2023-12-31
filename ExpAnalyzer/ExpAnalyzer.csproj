@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Calculate\CalcFirstHitCompProb.cs" />
+    <Compile Include="Controller\Calculate\CalcMovingAverage.cs" />
     <Compile Include="Controller\Calculate\FormattingHallData.cs" />
     <Compile Include="Controller\Common\ExcelCommonFunction.cs" />
     <Compile Include="Controller\GlaphMapping\FirstHitCompProbOnChart.cs" />
@@ -113,6 +114,7 @@
     <None Include="DataSheets\ExpAnalyzer_機種スペック調査結果.xlsx" />
     <None Include="DataSheets\ExpAnalyzer_関数リスト.xlsx" />
     <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29.xlsx" />
+    <None Include="DataSheets\パチンコデータサンプル\BK%29パチンコデータ_マルハン鹿児島新港店.xlsx" />
     <None Include="DataSheets\パチンコデータサンプル\パチンコデータ_マルハン鹿児島新港店.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
