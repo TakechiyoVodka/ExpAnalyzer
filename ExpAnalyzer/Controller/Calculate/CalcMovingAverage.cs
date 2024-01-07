@@ -18,11 +18,11 @@ namespace ExpAnalyzer.Controller.Calculate
         /// <summary>
         /// 移動平均値を計算
         /// </summary>
-        internal List<double> CalcMovingAverage(List<int> DataList, int sampleNum, string averageType)
+        internal List<double> CalcMovingAverage(List<int> DataList, int sampleNum, string maType)
         {
             List<double> MovingAverageList = new List<double>();
 
-            switch (averageType)
+            switch (maType)
             {
                 //単純移動平均(SMA)
                 case SIMPLE_MA:

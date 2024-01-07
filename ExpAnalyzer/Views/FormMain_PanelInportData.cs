@@ -46,7 +46,7 @@ namespace ExpAnalyzer
                     CommonVariableDefine = new ClassCommonVariableDefine();
 
                     CommonVariableDefine.HallDataFilePath = Ofd.FileName;
-                    TextBoxHallDataFilePath.Text = Ofd.FileName;
+                    this.TextBoxHallDataFilePath.Text = Ofd.FileName;
                 }
                 return;
             }
@@ -77,10 +77,10 @@ namespace ExpAnalyzer
                     HallData = InportHallDataFile.InportHallDataFromExcel(CommonVariableDefine.HallDataFilePath);
 
                     //店舗名をテキストボックスへ表示
-                    TextBoxStoreName.Text = HallData.HallName;
+                    this.TextBoxStoreName.Text = HallData.HallName;
 
                     //機種データをコンボボックスへ表示
-                    ModelDataOnComboBox.DispModelDataOnComboBox(ComboBoxModelName);
+                    ModelDataOnComboBox.DispModelDataOnComboBox(this.ComboBoxModelName);
 
                     if (DataGridViewUnitDataGrouper != null)
                     {
@@ -88,33 +88,43 @@ namespace ExpAnalyzer
                         DataGridViewUnitDataGrouper.Dispose();
                     }
                     //テキストボックスへ機種スペック情報を表示
-                    ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(this.TextBoxFirstHitProb,
-                        this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
-                        this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
-                        ModelSpecDataList, ComboBoxModelName.SelectedItem.ToString());
+                    ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(
+                        this.TextBoxFirstHitProb,
+                        this.TextBoxProbVarHitProb,
+                        this.TextBoxProbVarHitRashRate,
+                        this.TextBoxProbVarHitPersisRate,
+                        this.TextBoxSpecialTime,
+                        this.TextBoxSavingTime,
+                        this.TextBoxCTime,
+                        ModelSpecDataList,
+                        this.ComboBoxModelName.SelectedItem.ToString());
 
                     //台データをDataGridViewへ表示
                     DataGridViewUnitDataGrouper = UnitDataOnDataGridView.DispUnitDataOnDataGridView(
-                        this.DataGridViewUnitData, this.ButtonOpenUnitDataGroup, this.ButtonCloseUnitDataGroup, ComboBoxModelName.SelectedItem.ToString());
+                        this.DataGridViewUnitData,
+                        this.ButtonOpenUnitDataGroup,
+                        this.ButtonCloseUnitDataGroup,
+                        this.ComboBoxModelName.SelectedItem.ToString());
 
                     //選択機種の先頭日の履歴データをグラフへ表示
-                    DataGridViewUnitData.Rows[1].Selected = true;
+                    this.DataGridViewUnitData.Rows[1].Selected = true;
 
                     if (DataGridViewUnitDataGrouper != null)
                     {
                         //Excelデータ読み込みボタン無効化
-                        ButtonInportHallData.Enabled = false;
+                        this.ButtonInportHallData.Enabled = false;
 
                         //DataGridView操作ボタン有効化
-                        ButtonOpenUnitDataGroup.Enabled = true;
-                        ButtonCloseUnitDataGroup.Enabled = true;
+                        this.ButtonOpenUnitDataGroup.Enabled = true;
+                        this.ButtonCloseUnitDataGroup.Enabled = true;
                     }
                     //ホールデータの整形
-                    FormatHallData = FormattingHallData.FormattingHallData(ComboBoxHallDataSource.SelectedItem.ToString());
+                    FormatHallData = FormattingHallData.FormattingHallData(this.ComboBoxHallDataSource.SelectedItem.ToString());
 
                     if (FormatHallData != null)
                     {
-                        ButtonDispAnalyzeDataPanel.Enabled = true;
+                        //データ分析ボタン有効化
+                        this.ButtonDispAnalyzeDataPanel.Enabled = true;
                     }
                 }
                 else
@@ -137,10 +147,10 @@ namespace ExpAnalyzer
         {
             try
             {
-                if (TextBoxHallDataFilePath.Text != null && TextBoxHallDataFilePath.Text != "")
+                if (this.TextBoxHallDataFilePath.Text != null && this.TextBoxHallDataFilePath.Text != "")
                 {
                     //Excelデータ読み込みボタン有効化
-                    ButtonInportHallData.Enabled = true;
+                    this.ButtonInportHallData.Enabled = true;
                 }
                 return;
             }
@@ -165,17 +175,26 @@ namespace ExpAnalyzer
                 DataGridViewUnitDataGrouper.Dispose();
 
                 //テキストボックスへ機種スペックデータを表示
-                ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(this.TextBoxFirstHitProb,
-                    this.TextBoxProbVarHitProb, this.TextBoxProbVarHitRashRate, this.TextBoxProbVarHitPersisRate,
-                    this.TextBoxSpecialTime, this.TextBoxSavingTime, this.TextBoxCTime,
-                    ModelSpecDataList, ComboBoxModelName.SelectedItem.ToString());
+                ModelSpecDataOnTextBox.DispModelSpecDataOnTextBox(
+                    this.TextBoxFirstHitProb,
+                    this.TextBoxProbVarHitProb,
+                    this.TextBoxProbVarHitRashRate,
+                    this.TextBoxProbVarHitPersisRate,
+                    this.TextBoxSpecialTime,
+                    this.TextBoxSavingTime,
+                    this.TextBoxCTime,
+                    ModelSpecDataList,
+                    this.ComboBoxModelName.SelectedItem.ToString());
 
                 //台データをDataGridViewへ表示
                 DataGridViewUnitDataGrouper = UnitDataOnDataGridView.DispUnitDataOnDataGridView(
-                    this.DataGridViewUnitData, this.ButtonOpenUnitDataGroup, this.ButtonCloseUnitDataGroup, ComboBoxModelName.SelectedItem.ToString());
+                    this.DataGridViewUnitData,
+                    this.ButtonOpenUnitDataGroup,
+                    this.ButtonCloseUnitDataGroup,
+                    this.ComboBoxModelName.SelectedItem.ToString());
 
                 //選択機種の先頭日の履歴データをグラフへ表示
-                DataGridViewUnitData.Rows[1].Selected = true;
+                this.DataGridViewUnitData.Rows[1].Selected = true;
                 return;
             }
             catch (Exception ex)
@@ -192,10 +211,10 @@ namespace ExpAnalyzer
         {
             try
             {
-                if (TextBoxHallDataFilePath.Text != null && TextBoxHallDataFilePath.Text != "")
+                if (this.TextBoxHallDataFilePath.Text != null && this.TextBoxHallDataFilePath.Text != "")
                 {
                     //Excelデータ読み込みボタン有効化
-                    ButtonInportHallData.Enabled = true;
+                    this.ButtonInportHallData.Enabled = true;
                 }
                 return;
             }
@@ -217,8 +236,8 @@ namespace ExpAnalyzer
                 DataGridViewUnitDataGrouper.ExpandAll();
 
                 //選択されているセルの行ごと色変更
-                DataGridViewSelectedCellCollection SelectedCell = DataGridViewUnitData.SelectedCells;
-                DataGridViewUnitData.Rows[SelectedCell[0].RowIndex].Selected = true;
+                DataGridViewSelectedCellCollection SelectedCell = this.DataGridViewUnitData.SelectedCells;
+                this.DataGridViewUnitData.Rows[SelectedCell[0].RowIndex].Selected = true;
                 return;
             }
             catch (Exception ex)
@@ -293,27 +312,27 @@ namespace ExpAnalyzer
         {
             try
             {
-                if (DataGridViewUnitData.SelectedCells.Count > 0
-                    && DataGridViewUnitData.SelectedCells[0].RowIndex > 0
-                    && DataGridViewUnitData.SelectedCells[0].ColumnIndex != -1
-                    && DataGridViewUnitData.SelectedCells[0].Value != null)
+                if (this.DataGridViewUnitData.SelectedCells.Count > 0
+                    && this.DataGridViewUnitData.SelectedCells[0].RowIndex > 0
+                    && this.DataGridViewUnitData.SelectedCells[0].ColumnIndex != -1
+                    && this.DataGridViewUnitData.SelectedCells[0].Value != null)
                 {
                     ClassDailyDataOnChart DailyDataOnChart = new ClassDailyDataOnChart();
-                    int row = DataGridViewUnitData.SelectedCells[0].RowIndex;
+                    int row = this.DataGridViewUnitData.SelectedCells[0].RowIndex;
 
-                    if (DataGridViewUnitData.Rows[row].Cells[1].Value != null)
+                    if (this.DataGridViewUnitData.Rows[row].Cells[1].Value != null)
                     {
                         //選択されているセルの行ごと色変更
-                        DataGridViewUnitData.Rows[row].Selected = true;
+                        this.DataGridViewUnitData.Rows[row].Selected = true;
 
                         //機種名
-                        string modelName = ComboBoxModelName.SelectedItem.ToString();
+                        string modelName = this.ComboBoxModelName.SelectedItem.ToString();
 
                         //台番号
-                        string unitNum = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[0].Value);
+                        string unitNum = Convert.ToString(this.DataGridViewUnitData.Rows[row].Cells[0].Value);
 
                         //日付
-                        string dateTime = Convert.ToString(DataGridViewUnitData.Rows[row].Cells[1].Value);
+                        string dateTime = Convert.ToString(this.DataGridViewUnitData.Rows[row].Cells[1].Value);
 
                         //デイリーデータをグラフへ表示
                         DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, modelName, unitNum, dateTime);

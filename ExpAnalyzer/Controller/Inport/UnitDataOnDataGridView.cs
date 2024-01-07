@@ -80,6 +80,7 @@ namespace ExpAnalyzer.Controller.Inport
             }
             //DataGridViewへDataTableを反映
             DataGridViewUnitData.DataSource = dt;
+            DataGridViewUnitData.DefaultCellStyle.ForeColor = Color.White;
 
             //各台データをグループ化
             Subro.Controls.DataGridViewGrouper DataGridViewUnitDataGrouper = new Subro.Controls.DataGridViewGrouper(DataGridViewUnitData);

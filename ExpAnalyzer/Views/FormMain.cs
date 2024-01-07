@@ -60,6 +60,7 @@ namespace ExpAnalyzer
                     //データ入力パネルのみ表示
                     this.PanelInportData.Visible = true;
                     this.PanelAnalyzeData.Visible = false;
+                    this.PanelAnalyzeDataOperate.Visible = false;
                     this.PanelExportReport.Visible = false;
                     this.PanelUserSettings.Visible = false;
                 }
@@ -67,14 +68,14 @@ namespace ExpAnalyzer
                 this.PanelInportData.BringToFront();
 
                 //コンボボックス設定
-                ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
-                ComboBoxModelName.Items.Clear();
-                ComboBoxHallDataSource.DropDownStyle = ComboBoxStyle.DropDownList;
-                ComboBoxHallDataSource.Items.Clear();
-                ComboBoxHallDataSource.Items.Add("マルハンアプリ");
-                ComboBoxHallDataSource.Items.Add("データロボサイトセブン");
-                ComboBoxHallDataSource.Items.Add("台データオンライン");
-                ComboBoxHallDataSource.SelectedIndex = 0;
+                this.ComboBoxModelName.DropDownStyle = ComboBoxStyle.DropDownList;
+                this.ComboBoxModelName.Items.Clear();
+                this.ComboBoxHallDataSource.DropDownStyle = ComboBoxStyle.DropDownList;
+                this.ComboBoxHallDataSource.Items.Clear();
+                this.ComboBoxHallDataSource.Items.Add("マルハンアプリ");
+                this.ComboBoxHallDataSource.Items.Add("データロボサイトセブン");
+                this.ComboBoxHallDataSource.Items.Add("台データオンライン");
+                this.ComboBoxHallDataSource.SelectedIndex = 0;
 
                 //デイリーデータをグラフへ表示 ※枠線のみ表示
                 DailyDataOnChart.DispDailyDataOnChart(this.ChartDailyData, null, null, null);
@@ -97,6 +98,7 @@ namespace ExpAnalyzer
                 //データ入力パネルのみ表示
                 this.PanelInportData.Visible = true;
                 this.PanelAnalyzeData.Visible = false;
+                this.PanelAnalyzeDataOperate.Visible = false;
                 this.PanelExportReport.Visible = false;
                 this.PanelUserSettings.Visible = false;
             }
@@ -111,41 +113,76 @@ namespace ExpAnalyzer
         {
             try
             {
+                ClassAnalyzeDataOnChart AnalyzeDataOnChart = new ClassAnalyzeDataOnChart();
+
                 //パネルスタック後削除
                 {
                     //データ分析パネルのみ表示
                     this.PanelInportData.Visible = false;
                     this.PanelAnalyzeData.Visible = true;
+                    this.PanelAnalyzeDataOperate.Visible = true;
                     this.PanelExportReport.Visible = false;
                     this.PanelUserSettings.Visible = false;
                 }
                 //パネルを最前面に移動
                 this.PanelAnalyzeData.BringToFront();
+                this.PanelAnalyzeDataOperate.BringToFront();
 
-                if (ComboBoxDispModelName.Items.Count == 0)
+                if (this.PanelAnalyzeData.Enabled == false && this.PanelAnalyzeDataOperate.Enabled == false)
                 {
-                    ClassFirstHitCompProbOnChart FirstHitCompProbOnChart = new ClassFirstHitCompProbOnChart();
-
-                    foreach (ClassModelData ModelData in FormatHallData.ModelDataList)
+                    //コンボボックスの初期設定
+                    if (this.ComboBoxDispModelName.Items.Count == 0)
                     {
-                        ComboBoxDispModelName.Items.Add(ModelData.ModelName);
-
-                        if (ComboBoxDispUnitNum.Items.Count == 0)
+                        foreach (ClassModelData ModelData in FormatHallData.ModelDataList)
                         {
-                            foreach (ClassUnitData UnitData in ModelData.UnitDataList)
+                            this.ComboBoxDispModelName.Items.Add(ModelData.ModelName);
+
+                            if (this.ComboBoxDispUnitNum.Items.Count == 0)
                             {
-                                ComboBoxDispUnitNum.Items.Add(UnitData.UnitNum);
+                                foreach (ClassUnitData UnitData in ModelData.UnitDataList)
+                                {
+                                    this.ComboBoxDispUnitNum.Items.Add(UnitData.UnitNum);
+                                }
                             }
                         }
+                        this.ComboBoxDispModelName.SelectedIndex = 0;
+                        this.ComboBoxDispUnitNum.SelectedIndex = 0;
                     }
-                    ComboBoxDispModelName.Enabled = true;
-                    ComboBoxDispUnitNum.Enabled = true;
-                    ComboBoxDispModelName.SelectedIndex = 0;
-                    ComboBoxDispUnitNum.SelectedIndex = 0;
 
-                    //初当り合成確率をグラフへ表示
-                    FirstHitCompProbOnChart.FirstHitCompProbOnChart(this.ChartFirstHitCompProb, ComboBoxDispModelName.SelectedItem.ToString(), ComboBoxDispUnitNum.SelectedItem.ToString());
+                    //移動平均線1の初期設定
+                    this.ComboBoxMA1Type.Items.Clear();
+                    this.ComboBoxMA1Type.Items.Add("SMA");
+                    this.ComboBoxMA1Type.Items.Add("EMA");
+                    this.ComboBoxMA1Type.Items.Add("WMA");
+                    this.ComboBoxMA1Type.SelectedIndex = 0;
+                    this.NumUpDownMA1SampleNum.Value = 5;
+                    this.CheckBoxMA1Enable.Checked = true;
+
+                    //移動平均線2の初期設定
+                    this.ComboBoxMA2Type.Items.Clear();
+                    this.ComboBoxMA2Type.Items.Add("SMA");
+                    this.ComboBoxMA2Type.Items.Add("EMA");
+                    this.ComboBoxMA2Type.Items.Add("WMA");
+                    this.ComboBoxMA2Type.SelectedIndex = 0;
+                    this.NumUpDownMA2SampleNum.Value = 20;
+                    this.CheckBoxMA2Enable.Checked = true;
+
+                    //データ分析パネル有効化
+                    this.PanelAnalyzeData.Enabled = true;
+                    this.PanelAnalyzeDataOperate.Enabled = true;
                 }
+
+                //初当り合成確率をグラフへ表示
+                AnalyzeDataOnChart.FirstHitCompProbOnChart(
+                    this.ChartFirstHitCompProb,
+                    this.ComboBoxDispModelName.SelectedItem.ToString(),
+                    this.ComboBoxDispUnitNum.SelectedItem.ToString(),
+                    this.CheckBoxMA1Enable.Checked,
+                    this.CheckBoxMA2Enable.Checked,
+                    this.ComboBoxMA1Type.SelectedItem.ToString(),
+                    this.ComboBoxMA2Type.SelectedItem.ToString(),
+                    int.Parse(this.NumUpDownMA1SampleNum.Value.ToString()),
+                    int.Parse(this.NumUpDownMA2SampleNum.Value.ToString()));
             }
             catch (Exception ex)
             {
@@ -164,6 +201,7 @@ namespace ExpAnalyzer
                 //レポート出力パネルのみ表示
                 this.PanelInportData.Visible = false;
                 this.PanelAnalyzeData.Visible = false;
+                this.PanelAnalyzeDataOperate.Visible = false;
                 this.PanelExportReport.Visible = true;
                 this.PanelUserSettings.Visible = false;
             }
@@ -181,6 +219,7 @@ namespace ExpAnalyzer
                 //設定パネルのみ表示
                 this.PanelInportData.Visible = false;
                 this.PanelAnalyzeData.Visible = false;
+                this.PanelAnalyzeDataOperate.Visible = false;
                 this.PanelExportReport.Visible = false;
                 this.PanelUserSettings.Visible = true;
             }
