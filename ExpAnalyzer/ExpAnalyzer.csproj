@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="DataGridViewGrouper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DataGridViewGrouper\bin\Debug\DataGridViewGrouper.dll</HintPath>
+      <HintPath>..\DataGridViewGrouper\bin\Release\DataGridViewGrouper.dll</HintPath>
     </Reference>
     <Reference Include="Properties.Resources.Designer.cs">
       <HintPath>bin\Debug\DataGridViewGrouper\TempPE\Properties.Resources.Designer.cs.dll</HintPath>
@@ -113,6 +113,8 @@
     <None Include="DataSheets\ExpAnalyzer_仕様書.pptx" />
     <None Include="DataSheets\ExpAnalyzer_機種スペック調査結果.xlsx" />
     <None Include="DataSheets\ExpAnalyzer_関数リスト.xlsx" />
+    <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29.xlsm" />
+    <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29_bk.xlsx" />
     <None Include="DataSheets\TMP%29パチンコデータ_%28店舗名%29.xlsx" />
     <None Include="DataSheets\パチンコデータサンプル\BK%29パチンコデータ_マルハン鹿児島新港店.xlsx" />
     <None Include="DataSheets\パチンコデータサンプル\パチンコデータ_マルハン鹿児島新港店.xlsx" />

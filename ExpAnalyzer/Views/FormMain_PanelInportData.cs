@@ -119,6 +119,7 @@ namespace ExpAnalyzer
                         this.ButtonCloseUnitDataGroup.Enabled = true;
                     }
                     //ホールデータの整形
+
                     FormatHallData = FormattingHallData.FormattingHallData(this.ComboBoxHallDataSource.SelectedItem.ToString());
 
                     if (FormatHallData != null)
